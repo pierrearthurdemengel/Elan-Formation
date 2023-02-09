@@ -11,43 +11,19 @@
         }
     </style>
 </head>
-
-
-<!-- exemple html -->
-
-<!-- <label for="genre-select">Choose a gender:</label>
-
-<select name="genre" id="genre-select">
-    <option value="">--Please choose a genre--</option>
-    <option value="Monsieur">Monsieur</option>
-    <option value="Madame">Madame</option>
-    <option value="Mademoiselle">Mademoiselle</option>
-
-</select>
- -->
-
-<!-- php -->
+<body>
+    <label for="genre-select"> </label>
 <?php
 $elements = array("Choisissez une civilitée", "Monsieur", "Madame", "Mademoiselle");
 function alimenterListeDeroulante($elements)
 {
+    echo '<select name="genre" id="genre-select">';
     foreach ($elements as $valeur) {
-        echo "<select name=$valeur id=$valeur>
-        <option value=$valeur>$valeur</option>
-        <option value=$valeur>$valeur</option>
-        <option value=$valeur>$valeur</option>
-        <option value=$valeur>$valeur</option>
-    
-    </select>";
+        echo "<option value=$valeur>$valeur</option>";
     }
-};
-
-
-alimenterListeDeroulante($elements);
-
-?>
-
-
+    echo "</select>";
+    ;
+}
+        alimenterListeDeroulante($elements);?>
 </body>
-
 </html>
