@@ -4,7 +4,8 @@
             // Age depuis Date //
 
 $time = date('21/05/2018');
-function ago($time) {
+function ago($time) 
+{
     $time = strtotime($time);
     $diff_time = time() - $time;
 
@@ -18,9 +19,11 @@ $sec = array(   31556926 => 'an',
                 1 => 'seconde'        
 );
 
-foreach($sec as $sec => $value) {
+foreach($sec as $sec => $value) 
+{
     $div = $diff_time / $sec;
-    if($div >= 1) {
+    if($div >= 1) 
+    {
         $time_ago = round($div);
         $time_type = $value;
         return 'Age de la personne: ';
