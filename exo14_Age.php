@@ -1,12 +1,15 @@
 <?php
 //exercice 14
-$time = 
+
+            // Age depuis Date //
+
+$time = date('21/05/2018');
 function ago($time) {
     $time = strtotime($time);
     $diff_time = time() - $time;
 
         if($diff_time<1) {return 'à l\'instant';}
-}
+};
 
 $sec = array(   31556926 => 'an',
                 2629743.83 => 'mois',

@@ -1,5 +1,8 @@
 <?php
 //exercice 13
+
+// Moyenne dans Tableau //
+
 $notes =
     [
         "Maxime" => [10, 12, 8, 19, 3, 16, 11, 13, 9]

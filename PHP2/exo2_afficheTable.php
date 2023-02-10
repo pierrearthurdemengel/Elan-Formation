@@ -71,11 +71,6 @@
         //strtoupper($chaineDeCaracteres);
         // 
         //     
-        // 
-        // 
-        // 
-
-        // echo  $valeur . ' ' . $key . ' <br>';
         echo "<tr><td>" . strtoupper($key) . "</td>" . "<td>" . $valeur . "</td></tr></br>";
     }
     echo "</table>";

@@ -1,3 +1,6 @@
+
+            {# Image perpetuelle #}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +13,7 @@
 </head>
 <body>
 <!-- <img class="fit-picture"
-     src=" http://my.mobirise.com/data/userpic/764.jpg"> -->
+    src=" http://my.mobirise.com/data/userpic/764.jpg"> -->
 
 
 

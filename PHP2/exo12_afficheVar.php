@@ -1,3 +1,6 @@
+
+            {# Boucle affice info variable #}
+
 <!DOCTYPE html>
 <html lang="en">
 

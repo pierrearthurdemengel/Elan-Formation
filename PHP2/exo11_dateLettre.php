@@ -1,3 +1,6 @@
+
+            {# date num to lettres #}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +19,8 @@
 
 <?php
 $jour = date('l');
-   $mois = date('F');
-   switch($jour) {
+$mois = date('F');
+switch($jour) {
     case 'Monday': $jour = 'Lundi'; break;
     case 'Tuesday': $jour = 'Mardi'; break;
     case 'Wednesday': $jour = 'Mercredi'; break;
@@ -26,7 +29,7 @@ $jour = date('l');
     case 'Saturday': $jour = 'Samedi'; break;
     case 'Sunday': $jour = 'Dimanche'; break;
     default: $jour =''; break;
-  }
+}
 
 
 
@@ -45,8 +48,9 @@ switch($mois) {
     case 'November': $mois = 'Novembre'; break;
     case 'December': $mois = 'Decembre'; break;
     default: $mois =''; break;
-  }
- $jour_nb = date('d');
+}
+
+$jour_nb = date('d');
 $annee = date('Y');
 echo 'Nous sommes le '.$jour.'&nbsp;'.$jour_nb.'&nbsp;'.$mois.'&nbsp;'.$annee;
 ?>

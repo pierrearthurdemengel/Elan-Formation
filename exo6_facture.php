@@ -1,5 +1,8 @@
 <?php
 //exercice 6
+
+// facture  //
+
 $PrixUnitHT = 9.99;
 $Quantite = 5;
 $TVA = 0.2;

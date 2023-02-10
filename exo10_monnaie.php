@@ -1,5 +1,8 @@
 <?php
 //exercice 10
+
+// renu de monnaie //
+
 $MontantAPayer = 152;
 $MontantVerse = 200;
 $ResteAPayer = $MontantVerse - $MontantAPayer; // 48

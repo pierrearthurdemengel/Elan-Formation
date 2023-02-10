@@ -1,6 +1,8 @@
 <?php
 //exercice 11
 
+// parcourir un tableau //
+
 $Marque = array("Peugot", "Renaud", "BMW", "Mercedes");
 $tailleTableau1 = count($Marque);
 echo "Le tableau Marque contient $tailleTableau1 éléments.<br>";

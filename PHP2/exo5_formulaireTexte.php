@@ -1,3 +1,6 @@
+
+            {# Formulaire Texte #}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,9 +43,9 @@
     {
         foreach ($nomsInput as $valeur) {
             echo "<div>
-                         <label for= $valeur>$valeur</label><br>
-                         <input type='text' id=$valeur name=$valeur>
-                 </div>";
+                    <label for= $valeur>$valeur</label><br>
+                    <input type='text' id=$valeur name=$valeur>
+                </div>";
         }
     };
 

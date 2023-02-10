@@ -1,6 +1,7 @@
 <?php
 //exercice 12
 
+// tableau assosiatif //
 
 $langue = [
     "abdoul" => "arabe",

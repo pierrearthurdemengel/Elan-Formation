@@ -1,5 +1,8 @@
 <?php
 //exercice 9
+
+// imposable conditionné //
+
 $age = 12;
 $sexe = 'F';
 echo "Age : $age <br>

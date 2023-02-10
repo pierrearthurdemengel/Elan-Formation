@@ -1,6 +1,8 @@
 <?php
 //exercice 7
 
+// renvoyer la catégorie d’un enfant en fonction de son âge  //
+
 $age = 10;
 if ($age = 7 xor $age = 6) {
     $resultat = "Poussin";

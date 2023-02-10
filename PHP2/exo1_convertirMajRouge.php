@@ -1,3 +1,6 @@
+
+{# convertirMajRouge #}
+
 <!DOCTYPE html>
 <html lang="en">
 
