@@ -38,14 +38,16 @@ class Personnage{
             }
         }
         
-        public function attaque($cible){
+        public function attaque($cible)
+        {
             $cible-> vie -= $this-> atk; //soustrait atk de this à vie de $cible
             $cible->empecher_neg();
             // $cible->vie = 20;
             var_dump($cible);
         }
 
-        public function getNom(){
+        public function getNom()
+        {
             return $this->nom;          //contourne le caratère privé
         }
 
