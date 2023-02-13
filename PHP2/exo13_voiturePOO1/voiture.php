@@ -2,87 +2,103 @@
 
 //  PAGE 2 - objet //
 
-
-
-$v1 = new voiture('Peugeot', '408', 5);
-$v2 = new voiture('Citroën', 'c4', 3);
-
-
-
-class voiture {
+class voiture
+{
     private string $marque;
-    private string $modele ;
+    private string $modele;
     private int $nbPortes;
-    private int $vitesseActuelle = 0;
-    private bool $etat = false;
+    private int $vitesseActuelle;
+    private int $accel;
+    private bool $etat;
 
     function __construct($marque, $modele, $nbPortes)
     {
-        $this-> marque = $marque;
-        $this-> modele = $modele;
-        $this -> nbPortes = $nbPortes;
-    }
-    
-    function accelerer($accel) { 
-        if ($this -> etat == true)
-        {
-            $accel = 0;
-        }
-        else 
-        {
-            $this->vitesseActuelle = $accel + $this->vitesseActuelle;
-        }
-        $this->vitesseActuelle = $this->vitesseActuelle + $accel ;
-    }
-    function demarrer() {
-        $this->etat = true;
-        echo "la voiture est démarrée";
-        if ($etat = true ) {
-            echo "la voiture est déjà démarée";
-            if ($etat = !true ) {
-                {
-                    echo "la voiture démarre.";
-                }
-            }
-    }
-}
+        $this->marque = $marque;
+        $this->modele = $modele;
+        $this->nbPortes = $nbPortes;
+        $this->etat = false;
+        $this->vitesseActuelle = 0;
 
-    function stopper() 
+
+    }
+
+    function accelerer($accel)
     {
-        $this->vitesseActuelle = 0 ;
+        if ($this->etat == true) {
+            $this->vitesseActuelle = $accel + $this->vitesseActuelle;
+            echo "La " . $this->marque . " " . $this->modele . " accélère de " . $accel . "km/h et la vitesse est maintenant de " . $this->vitesseActuelle . "km/h. <br>";
+        } else {
+            echo "il faut d'abord alllumer la " . $this->marque . " " . $this->modele . ". <br>";
+        }
     }
-    
-    function getMarque() 
-    { 
-        return $this->marque; 
+    function demarrer()
+    { {
+            if ($this->etat == false) {
+                $this->etat = true;
+                echo "la " . $this->modele . " démarre.<br>";
+            } else {
+                echo "la " . $this->marque . " " . $this->modele . " est déjà démarrée.<br>";
+            }
+        }
+
     }
-    
-    function setMarque($marque) 
+
+    function stopper()
+    {
+        if ($this->vitesseActuelle > 0) {
+            $this->vitesseActuelle = 0;
+            echo "La " . $this->marque . " " . $this->modele . " est stoppée. <br>";
+        } else {
+            echo "La " . $this->marque . " " . $this->modele . " est déjà stoppée. <br>";
+        }
+    }
+
+    function getMarque()
+    {
+        return $this->marque;
+    }
+
+    function getModele()
+    {
+        return $this->modele;
+    }
+    function getEtat()
+    {
+        return $this->etat;
+    }
+    function getVitesseActuelle()
+    {
+        return "La vitesse du véhicule " . $this->marque . " " . $this->modele . " est de " . $this->vitesseActuelle . " km/h. ";
+    }
+
+
+
+    function setMarque($marque)
     {
         $this->marque = $marque;
     }
 
-    
-    function __toString()
+    function setModele($modele)
     {
-        return $this->marque;
-        return $this->modele;
-        return $this->nbPortes;
+        $this->modele = $modele;
     }
 
-    /**
-     * Get the value of etat
-     */ 
-    public function getEtat()
+
+
+    // Attention return = sortie de fonction -> pas possible de
+    public function __toString()
     {
-        return $this->etat;
+        return "Nom et modèle du véhicule : " . $this->marque . $this->modele . "<br>" .
+            "Nombre de portes : " . $this->nbPortes . "<br>" .
+            "Le véhicule " . $this->marque . " est " . $this->etat . ".<br>" .
+            "Sa vitesse actuelle est de " . $this->vitesseActuelle . " km/h";
     }
 
     /**
      * Set the value of etat
      *
      * @return  self
-     */ 
+     */
     public function setEtat($etat)
     {
         $this->etat = $etat;
@@ -90,21 +106,4 @@ class voiture {
         return $this;
     }
 }
-
-
-
-
-// $v1->setMarque('Peugeot');
-
-$v1->accelerer(20);
-
-echo $v1;
-
-// PAGE 1 //
-
-// require 'voiture.php';
-
-$v1 = new voiture("Peugot", 408 , 5);
-var_dump($v1->getEtat());
-$v2 = new voiture("Citroën", "C4", 3);
-
+;
