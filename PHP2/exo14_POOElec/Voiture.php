@@ -2,8 +2,8 @@
 
 class Voiture
 {
-    private string $marque = "Peugeot";
-    private string $modele = "408";
+    private string $marque;
+    private string $modele;
 
     function __construct($marque, $modele)
     {
@@ -11,26 +11,21 @@ class Voiture
         $this->modele = $modele;
     }
 
-    public function __getInfo()
-    {
-        return $this->marque . " " . $this->modele . " " . this->autonomie;
-    }
+
     public function __toString()
     {
-        return __getInfo();
+        return $this->marque . " " . $this->modele;
+        ;
     }
 
-    public function __getMarque()
+    public function getMarque()
     {
         return $this->marque;
     }
-    public function __getModele()
+    public function getModele()
     {
         return $this->modele;
     }
 
 }
-
-
-
 ?>
