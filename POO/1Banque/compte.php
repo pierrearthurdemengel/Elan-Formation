@@ -5,6 +5,7 @@ class Compte
     private float $solde;
     private string $devise;
     private Titulaire $titulaire;
+    private float $transfert;
 
 
     public function __construct($libellé, $solde, $devise, $titulaire)
@@ -27,20 +28,27 @@ class Compte
         }
     }
 
-    public function depot($depot)
+    public function depot(float $depot)
     {
         $this->solde += $depot; //ajoute depot de this à solde
-        var_dump($this->solde);
     }
 
     // Débiter le compte de X euros
-    public function retrait($retrait)
+    public function retrait(float $retrait)
     {
         $this->solde -= $retrait; //soustrait retrait de this à solde
         $this->empecher_neg();
-        var_dump($this->solde);
     }
 
+public function transfert(Compte $compteSource, Compte $compteCible, float $montant)
+{
+    if ($compteSource->getSolde() < $montant) {
+        echo "Transfert impossible : fonds insuffisants<br>";
+        return;
+    }
+    $compteSource->retrait($montant);
+    $compteCible->depot($montant);
+}
     
     // Getters
     public function getLibellé()
