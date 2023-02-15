@@ -25,7 +25,7 @@ class Personne
                 {
                     return 'à l\'instant';
                 }
-        }
+        };
         
         $sec = array(   31556926 => 'an',
                         2629743.83 => 'mois',
