@@ -15,11 +15,30 @@ class Titulaire
         $this->ville = $ville;
         $this->wallet = [];
     }
-
+    
+    
+    // FONCTIONS
     public function addCompte(Compte $Compte)
     {
         $this->wallet[] = $Compte;
     }
+
+    public function afficherComptes() 
+    {
+        $comptesInfo = "<h1>Comptes de $this</h1>";
+        foreach ($this->wallet as $compte) {
+            $comptesInfo .= $compte . "<br>";
+        }
+        return $comptesInfo;
+    }
+    
+    public function afficherInfos()
+    {
+        $naissanceString = $this->naissance->format('d/m/Y');
+        return "$this - Né le ".$naissanceString." à ". $this->ville."<br>";
+    }
+
+    // GETTERS
 
     public function getNom()
     {
@@ -46,20 +65,6 @@ class Titulaire
         return $this->wallet;
     }
 
-    public function afficherComptes() 
-    {
-        $comptesInfo = "<h1>Comptes de $this</h1>";
-        foreach ($this->wallet as $compte) {
-            $comptesInfo .= $compte . "<br>";
-        }
-        return $comptesInfo;
-    }
-    
-    public function afficherInfos()
-    {
-        $naissanceString = $this->naissance->format('d/m/Y');
-        return "$this - Né le ".$naissanceString." à ". $this->ville."<br>";
-    }
 
     public function __toString()
     {
