@@ -1,28 +1,32 @@
 <?php 
 class Role
 {
-        private Casting $casting;
+        private string $nomRole;
+        private array $castings;
         
-        public function __construct(Film $film)
+        public function __construct($nomRole, $castings)
         { //initialisation
-            $this->casting = $casting;
+            $this->nomRole = $nomRole;
+            $this->castings = $castings;
         }
         
         // GETTERS
-        public function getFilm()
+        public function getNomRole()
         {
-            return $this->film;
+            return $this->nomRole;
+        }
+
+        public function getCastings()
+        {
+            return $this->castings;
         }
         
         public function __toString()
         {
-            return $this->film;
-        }
-        public function getCasting()
-        {
-            return $this->casting;
+            return $this->nomRole;
         }
 }
 
-$roles = new Role ("Luke Skywalker", "Han Solo", "Princess Leia");
+$roles = new Role ("James Bond", $acteur1);
+$roles = new Role ("Batman", $acteur6);
 ?>

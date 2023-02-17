@@ -1,8 +1,8 @@
 <?php 
 class Personne
-    {
-        private string $Nom;
+{
         private string $Prenom;
+        private string $Nom;
         private string $sexe;
         private DateTime $date_naissance;
 
@@ -39,6 +39,7 @@ $acteur2 = new Acteur("Johansson", "Scarlett", "F", 1984-11-22);
 $acteur3 = new Acteur("Depp", "Johnny", "M", 1963-06-09);
 $acteur4 = new Acteur("Streep", "Meryl", "F", 1949-06-22);
 $acteur5 = new Acteur("Denzel", "Washington", "M", 1954-12-28);
+$acteur6 = new Acteur("Bale", "Christian", "M", 1974-01-30);
 
 $realisateur1 = new Realisateur("Mendes", "Sam", 'M', 1965-08-01);
 $realisateur2 = new Realisateur("Nolan", "Christopher ", 'M', 1970-07-30);

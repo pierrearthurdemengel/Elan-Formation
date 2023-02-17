@@ -2,7 +2,7 @@
 class Realisateur extends Personne 
 {
 
-    protected $realisateur = array();
+    private array $films;
 
     public function __construct($nom ,$prenom ,$sexe , $date_naissance)
     { //initialisation
@@ -12,18 +12,18 @@ class Realisateur extends Personne
      // GETTERS
     public function getRealisateur()
             {
-                return $this->Film;
+                return $this->Films;
             }
 
     public function __toString()
             {
-                return $this->Film;
+                return $this->Films;
             }
      //fonction
 
-     public function ajouterFilm($film) 
+     public function ajouterFilms($films) 
      {
-        array_push($this->realisateur, $film);
+        array_push($this->realisateur, $films);
     }
 
     public function getFilmsRealisateur() 

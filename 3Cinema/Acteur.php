@@ -1,19 +1,21 @@
 <?php 
 class Acteur extends Personne {
-    private $roles = array();
+    private array $castings;
 
-        public function __construct(Casting $Casting)
+        public function __construct(Casting $casting)
         { //initialisation
-            $this->Casting = $Casting;
+            $this->casting = $casting;
         }
         
         // GETTERS
-        public function getRoles() {
-            return $this->roles;
+        public function getCastings() 
+        {
+            return $this->castings;
         }
         
-        public function ajouterRole($role) {
-            array_push($this->roles, $role);
+        public function ajouterCasting($casting) 
+        {
+            array_push($this->castings, $casting);
         }
 }
 ?>

@@ -49,11 +49,11 @@ class Film
         {
             array_push($this->film);
         }
-    public function afficherFilm() 
+    public function afficherFilms() 
     {
         $FilmInfo = "<h1>Film : ". $this->titre."</h1>";
         $FilmInfo .= " ";
-        foreach ($this->genres as $genre) 
+        foreach ($this->genre as $genre) 
         {
             $FilmInfo .= $genre . " ";
         }
@@ -62,6 +62,6 @@ class Film
     }
 }
 
-$FilmSkyfall = new Film("Skyfall", 2005-06-15, '140', "Laissé pour mort après une mission en Turquie qui a tourné au désastre, l'agent britannique James Bond, nom de code 007, réapparaît à Londres lorsqu'il apprend par les informations d'un journal télévisé qu'un attentat a été commis contre le M16. Cet événement ébranle considérablement l'autorité de la directrice M.", "Action", "Sam Mendes");
-$FilmBatman = new Film("Batman Begins", 2012-09-26, 143, "Comment un homme seul peut-il changer le monde ? Telle est la question qui hante Bruce Wayne depuis cette nuit tragique où ses parents furent abattus sous ses yeux, dans une ruelle de Gotham City. Torturé par un profond sentiment de colère et de culpabilité, le jeune héritier de cette richissime famille fuit Gotham pour un long et discret voyage à travers le monde. Le but de ses pérégrinations : sublimer sa soif de vengeance en trouvant de nouveaux moyens de lutter contre l'injustice.", "Action", "Christopher Nolan");
+$FilmSkyfall = new Film("Skyfall", "2005-06-15", 140, "Laissé pour mort après une mission en Turquie qui a tourné au désastre, l'agent britannique James Bond, nom de code 007, réapparaît à Londres lorsqu'il apprend par les informations d'un journal télévisé qu'un attentat a été commis contre le M16. Cet événement ébranle considérablement l'autorité de la directrice M.", "Action", "Sam Mendes");
+$FilmBatman = new Film("Batman Begins", "2012-09-26", 143, "Comment un homme seul peut-il changer le monde ? Telle est la question qui hante Bruce Wayne depuis cette nuit tragique où ses parents furent abattus sous ses yeux, dans une ruelle de Gotham City. Torturé par un profond sentiment de colère et de culpabilité, le jeune héritier de cette richissime famille fuit Gotham pour un long et discret voyage à travers le monde. Le but de ses pérégrinations : sublimer sa soif de vengeance en trouvant de nouveaux moyens de lutter contre l'injustice.", "Action", "Christopher Nolan");
 ?>
