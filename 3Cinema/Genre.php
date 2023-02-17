@@ -3,7 +3,6 @@ class Genre
     {
         private array $films;
         private string $genre;
-        private string 
 
 
         
