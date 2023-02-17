@@ -1,27 +1,15 @@
 <?php 
 class Genre
     {
-        private Film $Film = [];
+        private array $Films;
         private string $Genre;
 
 
         
-        public function __construct(Film $Film)
+        public function __construct(Film $Film, string $Genre)
         { //initialisation
-            $this->Film[] = $Film;
+            $this->Films = [$Film];
             $this->Genre = $Genre;
-        }
-        
-        public function afficherFilm() 
-        {
-            $FilmInfo = "<h1>Film $this</h1>";
-            $FilmInfo .= " ";
-            foreach ($this->Film as $Film) 
-            {
-                $FilmInfo .= "$Film";
-            }
-            $FilmInfo .= " ";
-            return $FilmInfo;
         }
         
         // GETTERS

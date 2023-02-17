@@ -23,4 +23,6 @@ class Role
             return $this->casting;
         }
 }
+
+$roles = new Role ("Luke Skywalker", "Han Solo", "Princess Leia");
 ?>
