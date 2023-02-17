@@ -19,6 +19,7 @@ class Film
             $this->synopsis = $synopsis;
             $this->genre = $genre;
             $this->realisateur = $realisateur;
+            $genre->addFilm($this);
         }
 
         // GETTERS
@@ -31,7 +32,7 @@ class Film
         // fonctions
         public function ajouterRole($role) 
         {
-            array_push($this);
+            array_push($this->role);
         }
 
     public function getRealisateur()
@@ -43,6 +44,17 @@ class Film
     {
         return $this->Casting.$this->Genre.$this->Realisateur;
     }
+
+    public function afficherFilm() 
+{
+    $FilmInfo = "<h1>Film : ". $this->film."</h1>";
+    $FilmInfo .= " ";
+    foreach ($this->film as $film) {
+        $FilmInfo .= "$film";
+    }
+    $FilmInfo .= " ";
+    return $FilmInfo;
+}
 }
 
 FilmSkyfall = new Film("Skyfall", 2005-06-15, '140', "Laissé pour mort après une mission en Turquie qui a tourné au désastre, l'agent britannique James Bond, nom de code 007, réapparaît à Londres lorsqu'il apprend par les informations d'un journal télévisé qu'un attentat a été commis contre le M16. Cet événement ébranle considérablement l'autorité de la directrice M.", "Action", "Sam Mendes");
