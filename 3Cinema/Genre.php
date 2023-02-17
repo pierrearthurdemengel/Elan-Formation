@@ -3,24 +3,29 @@ class Genre
     {
         private array $films;
         private string $genre;
+        private string 
 
 
         
-        public function __construct(Film $film, string $genre)
+        public function __construct(string $genre)
         { //initialisation
-            $this->films = [$film];
+            $this->films = [];
             $this->genre = $genre;
         }
         
         // GETTERS
-    public function getFilm()
+    public function getFilm() : array
             {
                 return $this->films;
             }
             
-            public function __toString()
+    public function __toString()
             {
-                return $this->films." appartient au genre ".$this->genre;
+                return $this->genre;
             }
+    public function addFilm(Film $film) 
+    {
+        $this->films[] = $film;
+    }
 }
 ?>
