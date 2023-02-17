@@ -2,9 +2,10 @@
 class Acteur extends Personne {
     private array $castings;
 
+        //initialisation
         public function __construct(Casting $casting)
-        { //initialisation
-            $this->casting = $casting;
+        { 
+            $this->castings = array($casting);
         }
         
         // GETTERS

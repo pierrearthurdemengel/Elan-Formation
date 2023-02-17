@@ -5,11 +5,11 @@ class Casting
         private Acteur $acteur;
         private Role $role;
         
-        public function __construct($film, Acteur $acteur, Role $role)
+        public function __construct(Film $film, Acteur $acteur, Role $role)
         { //initialisation
             $this->film = $film;
             $this->acteur = $acteur;
-            $this->role =$role;
+            $this->role = $role;
         }
         
         // GETTERS
@@ -47,9 +47,6 @@ class Casting
 
         public function __toString()
         {
-            return $this->role.$this->acteur;
+          return $this->role . " joué par " . $this->acteur . " dans " . $this->film;
         }
-}
-
-$casting = new Casting("James Bond", $role, $acteur )
-?>
+}?>
