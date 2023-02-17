@@ -1,17 +1,24 @@
 <?php
             // FILM //
 
-class Real
+class Film
 {
-        private Casting $Casting;
-        private Genre $Genre;
-        private Real $Realisateur;
+        private string $titre;
+        private string $date_sortie;
+        private string $duree;
+        private string $synopsis;
+        private string $genre;
+        private string $realisateur;
+        private $roles = array();
     
-        public function __construct($Casting, $Genre, $Realisateur)
+        public function __construct($titre, $date_sortie, $duree, $synopsis, $genre, $realisateur)
         { //initialisation
-            $this->Casting = $Casting;
-            $this->Genre = $Genre;
-            $this->Realisateur = $Realisateur;
+            $this->titre = $titre;
+            $this->date_sortie = $date_sortie;
+            $this->duree = $duree;
+            $this->synopsis = $synopsis;
+            $this->genre = $genre;
+            $this->realisateur = $realisateur;
         }
 
         // GETTERS
@@ -24,6 +31,12 @@ class Real
     {
         return $this->Genre;
     }
+
+        // fonctions
+        public function ajouterRole($role) 
+        {
+            array_push($this);
+        }
 
     public function getRealisateur()
     {

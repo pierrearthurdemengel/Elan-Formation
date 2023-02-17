@@ -1,26 +1,26 @@
 <?php 
 class Role
 {
-        private Casting $Casting;
+        private Casting $casting;
         
-        public function __construct(Film $Film)
+        public function __construct(Film $film)
         { //initialisation
-            $this->Casting = $Casting;
+            $this->casting = $casting;
         }
         
         // GETTERS
         public function getFilm()
         {
-            return $this->Film;
+            return $this->film;
         }
         
         public function __toString()
         {
-            return $this->Film;
+            return $this->film;
         }
         public function getCasting()
         {
-            return $this->Casting;
+            return $this->casting;
         }
 }
 ?>
