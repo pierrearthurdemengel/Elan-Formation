@@ -15,6 +15,5 @@ class Acteur extends Personne {
         public function getRoles() {
             return $this->roles;
         }
-    }
 }
 ?>
