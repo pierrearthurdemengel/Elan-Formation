@@ -16,4 +16,7 @@ class Acteur extends Personne {
             return $this->roles;
         }
 }
+
+$Acteur1 = new Acteur("Stephen", "King");
+$Acteur2 = new Acteur("Brigitte", "Giraud");
 ?>

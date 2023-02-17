@@ -1,17 +1,16 @@
-
 <?php 
 class Realisateur extends Personne 
 {
 
-    private $films_realises = array();
+    protected $realisateur = array();
 
-    public function __construct(Film $Film)
+    public function __construct($nom ,$prenom ,$sexe , $date_naissance)
     { //initialisation
-        $this->Film = $Film;
+        parent::__construct($nom, $prenom, $sexe, $date_naissance);
     }
 
      // GETTERS
-    public function getFilm()
+    public function getRealisateur()
             {
                 return $this->Film;
             }
@@ -22,12 +21,18 @@ class Realisateur extends Personne
             }
      //fonction
 
-     public function ajouterFilm($film) {
-        array_push($this->films_realises, $film);
+     public function ajouterFilm($film) 
+     {
+        array_push($this->realisateur, $film);
     }
 
-    public function getFilmsRealises() {
-        return $this->films_realises;
+    public function getFilmsRealisateur() 
+    {
+        return $this->realisateur;
     }
 }
+
+$realisateur1 = new Realisateur("Mendes", "Sam", 'M', 1965-08-01);
+$realisateur2 = new Realisateur("Nolan", "Christopher ", 'M', 1970-07-30);
+
 ?>

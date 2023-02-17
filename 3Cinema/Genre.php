@@ -1,26 +1,26 @@
 <?php 
 class Genre
     {
-        private array $Films;
-        private string $Genre;
+        private array $films;
+        private string $genre;
 
 
         
-        public function __construct(Film $Film, string $Genre)
+        public function __construct(Film $film, string $genre)
         { //initialisation
-            $this->Films = [$Film];
-            $this->Genre = $Genre;
+            $this->films = [$film];
+            $this->genre = $genre;
         }
         
         // GETTERS
     public function getFilm()
             {
-                return $this->Film;
+                return $this->films;
             }
             
             public function __toString()
             {
-                return $this->Film." appartient au genre ".$Genre;
+                return $this->films." appartient au genre ".$this->genre;
             }
 }
 ?>

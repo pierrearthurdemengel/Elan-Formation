@@ -32,4 +32,9 @@ class Personne
         return $this->date_naissance;
     }
 }
+
+
+$acteur1 = ("Craig", "Daniel", "M", "1968-03-02")
+$acteur2 = ("Craig", "Daniel", "M", "1968-03-02")
+?>
 ?>
