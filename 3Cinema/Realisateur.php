@@ -32,7 +32,5 @@ class Realisateur extends Personne
     }
 }
 
-$realisateur1 = new Realisateur("Mendes", "Sam", 'M', 1965-08-01);
-$realisateur2 = new Realisateur("Nolan", "Christopher ", 'M', 1970-07-30);
 
 ?>

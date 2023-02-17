@@ -4,7 +4,7 @@ class Personne
         private string $Nom;
         private string $Prenom;
         private string $sexe;
-        private $date_naissance;
+        private DateTime $date_naissance;
 
     public function __construct($nom, $prenom, $sexe, $date_naissance)
     { //initialisation
@@ -34,7 +34,17 @@ class Personne
 }
 
 
-$acteur1 = ("Craig", "Daniel", "M", "1968-03-02")
-$acteur2 = ("Craig", "Daniel", "M", "1968-03-02")
+$acteur1 = new Acteur("Craig", "Daniel", "M", 1968-03-02);
+$acteur2 = new Acteur("Johansson", "Scarlett", "F", 1984-11-22);
+$acteur3 = new Acteur("Depp", "Johnny", "M", 1963-06-09);
+$acteur4 = new Acteur("Streep", "Meryl", "F", 1949-06-22);
+$acteur5 = new Acteur("Denzel", "Washington", "M", 1954-12-28);
+
+$realisateur1 = new Realisateur("Mendes", "Sam", 'M', 1965-08-01);
+$realisateur2 = new Realisateur("Nolan", "Christopher ", 'M', 1970-07-30);
+$realisateur3 = new Realisateur("Bigelow", "Kathryn", "F", 1951-11-27);
+$realisateur4 = new Realisateur("Tarantino", "Quentin", "M", 1963-03-27);
+$realisateur5 = new Realisateur("Spielberg", "Steven", "M", 1946-12-18);
+$realisateur6 = new Realisateur("Coppola", "Francis Ford", "M", 1939-04-07);
 ?>
 ?>

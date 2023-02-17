@@ -8,15 +8,12 @@ class Acteur extends Personne {
         }
         
         // GETTERS
-        public function ajouterRole($role) {
-            array_push($this->roles, $role);
-        }
-    
         public function getRoles() {
             return $this->roles;
         }
+        
+        public function ajouterRole($role) {
+            array_push($this->roles, $role);
+        }
 }
-
-$Acteur1 = new Acteur("Stephen", "King");
-$Acteur2 = new Acteur("Brigitte", "Giraud");
 ?>
