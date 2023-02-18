@@ -26,7 +26,4 @@ class Role
             return $this->nomRole;
         }
 }
-
-$roles = new Role ("James Bond", $acteur1);
-$roles = new Role ("Batman", $acteur6);
 ?>
