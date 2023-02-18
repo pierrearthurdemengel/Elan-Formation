@@ -29,21 +29,21 @@ class Casting
             return $this->film;
         }
         
-        public function getActeurRole($role) {
-            $index = array_search($role, $this->role);
-            if ($index === false) {
-              return null;
+        public function getActeurRole($role)
+        {
+            if ($this->role == $role) {
+                return $this->acteur;
             }
-            return $this->acteur[$index];
-          }
-        
-          public function getRoleActeur($acteur) {
-            $index = array_search($acteur, $this->acteur);
-            if ($index === false) {
-              return null;
+            return null;
+        }
+    
+        public function getRoleActeur($acteur)
+        {
+            if ($this->acteur == $acteur) {
+                return $this->role;
             }
-            return $this->role[$index];
-          }
+            return null;
+        }
 
         public function __toString()
         {

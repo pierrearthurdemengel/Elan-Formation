@@ -1,6 +1,8 @@
 <?php 
 class Genre
     {
+        private string $nom;
+        private $films = array();
         private string $genre;
 
 
