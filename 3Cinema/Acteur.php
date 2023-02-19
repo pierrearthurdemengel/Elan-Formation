@@ -1,6 +1,6 @@
 <?php 
 class Acteur extends Personne {
-    private array $castings;
+    private array $castings =[];
 
         //initialisation
         public function __construct(Casting $casting)
@@ -9,14 +9,21 @@ class Acteur extends Personne {
         }
         
         // GETTERS
-        public function getCastings() 
+        public function getCastings() : array
         {
             return $this->castings;
         }
         
-        public function ajouterCasting($casting) 
+        public function ajouterCasting(Casting $casting) 
         {
-            array_push($this->castings, $casting);
+            $this->castings[] = $casting;
+        }
+        public function getFilmographie() {
+            $films = [];
+            foreach($this->castings as $casting) {
+                $films[] = $casting->getFilm();
+            }
+            return $films;
         }
 }
 ?>

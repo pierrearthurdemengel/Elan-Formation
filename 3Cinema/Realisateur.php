@@ -30,6 +30,10 @@ class Realisateur extends Personne
     {
         return $this->realisateur;
     }
+
+    public function getFilmographie() {
+        return $this->films_realises;
+    }
 }
 
 
