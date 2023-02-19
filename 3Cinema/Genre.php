@@ -18,5 +18,8 @@ class Genre
             {
                 return $this->genre;
             }
-        }
+            public function getFilms() {
+                return $this->films;
+            }
+}
 ?>
