@@ -3,22 +3,21 @@ class Genre
     {
         private string $nom;
         private $films = array();
-        private string $genre;
 
 
         
-        public function __construct(string $genre)
+        public function __construct(string $nom)
         { //initialisation
-            $this->genre = $genre;
+            $this->nom = $nom;
         }
         
         // GETTERS
             
     public function __toString()
             {
-                return $this->genre;
+                return $this->nom;
             }
-            public function getFilms() {
+    public function getFilms() {
                 return $this->films;
             }
 }

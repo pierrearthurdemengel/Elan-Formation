@@ -3,9 +3,9 @@ class Acteur extends Personne {
     private array $castings =[];
 
         //initialisation
-        public function __construct(Casting $casting)
-        { 
-            $this->castings = array($casting);
+        public function __construct(string $nom ,string $prenom ,string $sexe , DateTime $date_naissance)
+        { //initialisation
+            parent::__construct($nom, $prenom, $sexe, $date_naissance);
         }
         
         // GETTERS

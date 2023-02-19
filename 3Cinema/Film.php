@@ -19,8 +19,8 @@ class Film
             $this->synopsis = $synopsis;
             $this->genre = $genre;
             $this->realisateur = $realisateur;
-            $genre->ajouterFilm($this);
-            $realisateur->ajouterFilm($this);
+            $genre->ajouterFilms($this);
+            $realisateur->ajouterFilms($this);
         }
 
         // GETTERS
@@ -73,12 +73,16 @@ class Film
         return $acteurs;
     }
 
-    public function getCasting() {
+    public function getCastings() {
         $castings = [];
         foreach($this->castings as $casting) {
             $castings[] = $casting;
         }
         return $castings;
+    }
+
+    public function setRealisateur(Realisateur $realisateur) {
+        $this->realisateur = $realisateur;
     }
 }
 ?>

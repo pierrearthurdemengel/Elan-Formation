@@ -31,18 +31,12 @@ class Casting
         
         public function getActeurRole($role)
         {
-            if ($this->role == $role) {
-                return $this->acteur;
-            }
-            return null;
+            return [$this->acteur, $this->role];
         }
     
         public function getRoleActeur($acteur)
         {
-            if ($this->acteur == $acteur) {
-                return $this->role;
-            }
-            return null;
+            return [$this->role, $this->acteur];
         }
 
         public function __toString()

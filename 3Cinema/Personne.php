@@ -1,12 +1,12 @@
 <?php 
 class Personne
 {
-        private string $Prenom;
-        private string $Nom;
-        private string $sexe;
-        private DateTime $date_naissance;
+        protected string $prenom;
+        protected string $nom;
+        protected string $sexe;
+        protected DateTime $date_naissance;
 
-    public function __construct($nom, $prenom, $sexe, $date_naissance)
+    public function __construct(string $nom, string $prenom, string $sexe, DateTime $date_naissance)
     { //initialisation
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -16,20 +16,23 @@ class Personne
 
      // GETTERS
 
-     public function getNom() {
-        return $this->nom;
-    }
+    //  public function getNom() {
+    //     return $this->nom;
+    // }
 
-    public function getPrenom() {
-        return $this->prenom;
-    }
+    // public function getPrenom() {
+    //     return $this->prenom;
+    // }
 
-    public function getSexe() {
-        return $this->sexe;
-    }
+    // public function getSexe() {
+    //     return $this->sexe;
+    // }
 
-    public function getDateNaissance() {
-        return $this->date_naissance;
+    // public function getDateNaissance() {
+    //     return $this->date_naissance;
+    // }
+    public function __toString() {
+        return $this->nom . ' ' . $this->prenom."né le ".$this->date_naissance;
     }
 }
 
