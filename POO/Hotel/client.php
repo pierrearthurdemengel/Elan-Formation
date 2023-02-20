@@ -6,12 +6,11 @@ class Client
     private DateTime $dateNaissance;
     private array $reservations;
 
-    public function __construct(string $nom, string $prenom, string $dateNaissance)
+    public function __construct(string $nom, string $prenom)
     {
         // initialisation
         $this->nom = $nom; 
         $this->prenom = $prenom;
-        $this->dateNaissance = new DateTime($dateNaissance);
         $this->reservations = [];
     }
 
@@ -25,10 +24,6 @@ class Client
         return $this->prenom;
     }
     
-
-    public function getDateNaissance() {
-        return $this->dateNaissance;
-    }
 
     public function ajouterReservation(Reservation $reservation) 
     {

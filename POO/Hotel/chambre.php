@@ -17,15 +17,6 @@
             $this->hotel = $hotel;
         }
 
-        public function calculerPrx(int $nbNuits): float
-        {
-            return $this->prixNuit * $nbNuits;
-        }
-
-
-
-
-
         public function __toString()
         {
         return (string) $this->nb_Chambre;

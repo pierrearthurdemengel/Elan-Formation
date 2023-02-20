@@ -2,6 +2,7 @@
 class Hotel
 {
     private string $nomHotel;
+    private string $adresse;
     private array $chambres;
 
     public function __construct (string $nomHotel)
