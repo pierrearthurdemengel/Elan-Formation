@@ -1,23 +1,22 @@
 <?php
-class Reservation extends Cilent
+class Reservation extends Client
 {
-    private int $id_reservation;
+    private int $id_Reservation;
     private DateTime $dateDebut;
     private DateTime $dateFin;
     private array $reservations;
 
-    public function __construct(string $prenom, string $nom, string $sexe , string $dateNaissance, int $id_reservation)
+    public function __construct(string $prenom, string $nom, string $sexe , string $dateNaissance, int $id_Client, int $id_Reservation)
     { //initialisation
-        parent::__construct($nom, $prenom, $sexe, $dateNaissance);
-        $this->reservations = [];
-        $this->id_reservation = $id_reservation;
+        parent::__construct($nom, $prenom, $sexe, $dateNaissance, $id_Client);
+        $this->reservations = []; 
+        $this->id_Reservation = $id_Reservation;
     }
          // GETTERS
      public function getReservations()
      {
          return $this->reservations;
      }
-     
      
      //fonction
      public function ajouterReservation(string $reservation) 

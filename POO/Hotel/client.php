@@ -6,8 +6,7 @@ class Client
     private string $prenom;
     private DateTime $dateNaissance;
 
-    public function __construct(int $id_Client, string $nom, string $prenom, 
-    string $dateNaissance)
+    public function __construct(int $id_Client, string $nom, string $prenom, string $dateNaissance)
     {
         // initialisation
         $this->id_Client = $id_Client;
@@ -40,6 +39,5 @@ class Client
         return $this->prenom . ' ' . $this->nom."né le ".$this->dateNaissance." dont le numéro client est : ".
         $this->id_Client;
     }
-
 }
 ?>
