@@ -3,43 +3,41 @@ class Reservation
 {
     private DateTime $dateDebut;
     private DateTime $dateFin;
-    private array $reservations;
     private Chambre $chambre;
     private Client $client;
 
-    public function __construct(string $dateDebut, string $dateFin, array $reservations)
+    public function __construct(string $dateDebut, string $dateFin, Chambre $chambre, Client $client)
     { //initialisation
- // à faire
-        $this->reservations = $reservations; 
+        $this->dateDebut = new DateTime ($dateDebut);
+        $this->dateFin = new DateTime ($dateFin);
+        $this->chambre = $chambre;
+        $this->client = $client;
     }
          // GETTERS
-     public function getReservations()
-     {
-         return $this->reservations;
-     }
 
-          public function getDateDebut()
+        public function getDateDebut()
      {
          return $this->dateDebut;
      }
 
+     
      public function getDateFin()
      {
          return $this->dateFin;
-     }
-     //fonction
-     public function ajouterReservation(array $reservations) 
-     {
-        $this->reservations = $reservations;
+        }
+        public function getClient()
+    {
+        return $this->client;
     }
 
-     public function afficherReservations() 
-     {
-         $result = "<h1>Reservations ". $this->reservations."</h1>";
-         foreach ($this->reservations as $reservation) {
-            $result .= $reservation."<br>";
-         }
-         return $result;
-     }
-}
+        public function getChambre()
+    {
+        return $this->chambre;
+    }
+
+        public function __toString()
+    {
+        return $this->client. ' - ' . $this->chambre .  ' -  du ' . $this->dateDebut . ' au ' . $this->dateFin.'<br>';
+    }
+    }
 ?>
