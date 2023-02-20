@@ -28,9 +28,9 @@ class Reservation
          return $this->dateFin;
      }
      //fonction
-     public function ajouterReservation(string $reservation) 
+     public function ajouterReservation(array $reservations) 
      {
-        $this->reservations = $reservation;
+        $this->reservations = $reservations;
     }
 
      public function afficherReservations() 
