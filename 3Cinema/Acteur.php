@@ -2,14 +2,14 @@
 class Acteur extends Personne {
     private array $castings =[];
 
-        //initialisation
-        public function __construct(string $nom ,string $prenom ,string $sexe , DateTime $date_naissance)
+        //initialisation                                                        //String et pas DateTime
+        public function __construct(string $nom ,string $prenom ,string $sexe , string $date_naissance)
         { //initialisation
-            parent::__construct($nom, $prenom, $sexe, $date_naissance);
+            parent::__construct($prenom, $nom, $sexe, $date_naissance);
         }
         
         // GETTERS
-        public function getCastings() : array
+        public function getCastings()
         {
             return $this->castings;
         }
@@ -18,12 +18,20 @@ class Acteur extends Personne {
         {
             $this->castings[] = $casting;
         }
-        public function getFilmographie() {
-            $films = [];
-            foreach($this->castings as $casting) {
-                $films[] = $casting->getFilm();
+
+        public function afficherFilmographie() {
+            $result = "<h1>Filmographie de $this</h1>";
+            foreach ($this->castings  as $casting) {
+                $result .= $casting->getFilm()." (". $casting->getRole().")<br>";
             }
-            return $films;
+            return $result;
         }
+        // public function getFilmographie() {
+        //     $films = [];
+        //     foreach($this->castings as $casting) {
+        //         $films[] = $casting->getFilm();
+        //     }
+        //     return $films;
+        // }
 }
 ?>

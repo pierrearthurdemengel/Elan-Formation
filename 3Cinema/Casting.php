@@ -10,6 +10,9 @@ class Casting
             $this->film = $film;
             $this->acteur = $acteur;
             $this->role = $role;
+            $this->film->ajouterCasting($this);
+            $this->role->ajouterCasting($this);
+            $this->acteur->ajouterCasting($this);
         }
         
         // GETTERS
@@ -29,18 +32,18 @@ class Casting
             return $this->film;
         }
         
-        public function getActeurRole($role)
-        {
-            return [$this->acteur, $this->role];
-        }
+        // public function getActeurRole($role)
+        // {
+        //     return [$this->acteur, $this->role];
+        // }
     
-        public function getRoleActeur($acteur)
-        {
-            return [$this->role, $this->acteur];
-        }
+        // public function getRoleActeur($acteur)
+        // {
+        //     return [$this->role, $this->acteur];
+        // }
 
-        public function __toString()
-        {
-          return $this->role . " joué par " . $this->acteur . " dans " . $this->film;
-        }
+        // public function __toString()
+        // {
+        //   return $this->role . " joué par " . $this->acteur . " dans " . $this->film;
+        // }
 }?>

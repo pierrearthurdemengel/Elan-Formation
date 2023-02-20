@@ -1,42 +1,32 @@
 <?php 
 class Realisateur extends Personne 
 {
-    private array $films_realises = [];
+    private array $films;// et pas = [];
 
-    public function __construct(string $nom ,string $prenom ,string $sexe , DateTime $date_naissance)
+    public function __construct(string $prenom, string $nom, string $sexe , string $dateNaissance)
     { //initialisation
-        parent::__construct($nom, $prenom, $sexe, $date_naissance);
+        parent::__construct($nom, $prenom, $sexe, $dateNaissance);
+        $this->films = [];      //instancier le tableau dans le construct et pas dans la déclaration des attributs
     }
 
      // GETTERS
-     public function getFilmographie()
+     public function getFilms()
      {
-         return $this->films_realises;
+         return $this->films;
      }
      
-     public function ajouterFilms(Film $film)
-     { 
-         $this->films_realises[] = $film;
-         $film->setRealisateur($this);
-     }
-    public function __toString()
-            {
-                $filmographie = '';
-                foreach ($this->getFilmographie() as $film) {
-                    $filmographie .= $film . "<br/>";
-                }
-                return $filmographie;
-            }
+     public function ajouterFilm(Film $film) {
+        $this->films[] = $film;
+    }
 
      //fonction
 
-     public function afficherFilmographie()
-     {
-         $filmographie = "Filmographie de " . $this->getNomComplet() . " :<br/>";
-         foreach ($this->films_realises as $film) {
-             $filmographie .= "- " . $film->getTitre() . " (" . $film->getDateSortie()->format('Y') . ")\n";
+     public function afficherFilms() {
+         $result = "<h1>Films de $this</h1>";
+         foreach ($this->films as $film) {
+            $result .= $film."<br>";
          }
-         return $filmographie;
+         return $result;
      }
 }
 ?>

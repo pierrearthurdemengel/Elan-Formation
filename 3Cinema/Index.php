@@ -27,33 +27,9 @@ $c4 = new Casting($sw4, $fisher, $leia);
 $c5 = new Casting($sw5, $fisher, $leia);
 $c6 = new Casting($sw6, $fisher, $leia);
 
-echo "Liste des acteurs ayant incarné le rôle de Han Solo :\n";
-foreach ($hanSolo->getActeurs() as $acteur) {
-    echo $acteur . "\n";
-}
-
-echo "\nCasting de Star Wars IV :\n";
-foreach ($sw4->getCastings() as $casting) {
-    echo $casting . "\n";
-}
-
-echo "\nListe des films du genre Science-Fiction :\n";
-foreach ($sf->getFilms() as $film) {
-    echo $film . "\n";
-}
-
-echo "\nFilmographie de Harison FORD :\n";
-foreach ($ford->getFilmographie() as $film) {
-    echo $film . "\n";
-}
-
-echo "\nFilmographie de George LUCAS :\n";
-foreach ($lucas->getFilmographie() as $film) {
-    echo $film . "\n";
-}
-echo $sw4-afficherCasting();
-echo $hanSolo⇒afficherCasting();
-echo $lucas afficherFilms();
-echo $ford afficherFilmographie();
-echo $sf afficherFilms();
+echo $sw4->afficherCasting();
+echo $hanSolo->afficherCasting();
+echo $lucas->afficherFilms();
+echo $ford->afficherFilmographie();
+echo $sf->afficherFilms();
 ?>
