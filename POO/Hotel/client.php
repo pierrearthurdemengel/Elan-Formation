@@ -1,18 +1,18 @@
 <?php
 class Client
 {
-    private int $id_Client;
     private string $nom;
     private string $prenom;
     private DateTime $dateNaissance;
+    private array $reservations;
 
-    public function __construct(int $id_Client, string $nom, string $prenom, string $dateNaissance)
+    public function __construct(string $nom, string $prenom, string $dateNaissance)
     {
         // initialisation
-        $this->id_Client = $id_Client;
         $this->nom = $nom; 
         $this->prenom = $prenom;
         $this->dateNaissance = new DateTime($dateNaissance);
+        $this->reservations = [];
     }
 
     public function getNom(): string
@@ -25,19 +25,26 @@ class Client
         return $this->prenom;
     }
     
-    public function getID()
-    {
-        return $this->id_Client;
-    }
 
     public function getDateNaissance() {
         return $this->dateNaissance;
     }
 
+    public function ajouterReservation(Reservation $reservation) 
+    {
+        $this->reservations[] = $reservation;
+    }
+    public function afficherReservations() {
+        $result = "<h1>Reservation de $this>/h1>";
+        foreach ($this->reservations as $reservation) {
+            $result .= $reservation."<br>";
+        }
+        return $result;
+    }
+
     public function __toString(): string
     {
-        return $this->prenom . ' ' . $this->nom."né le ".$this->dateNaissance." dont le numéro client est : ".
-        $this->id_Client;
+        return $this->prenom . ' ' . $this->nom."né le ".$this->dateNaissance." dont le numéro client est : ";
     }
 }
 ?>
