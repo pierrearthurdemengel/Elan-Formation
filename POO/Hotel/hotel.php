@@ -19,6 +19,11 @@ class Hotel
         $this->_reservations = [];
     }
 
+    public function ajouterReservation(Reservation $reservation) 
+    {
+        $this->_reservations[] = $reservation;
+    }
+
     public function getNom(): string
     {
         return $this->_nom;
@@ -78,18 +83,90 @@ class Hotel
         $this->_reservations = $_reservations;
     }
 
-    public function afficherReservations(): void
+    public function AfficherDetails(): void
     {
         if (count($this->_reservations) === 0) {
-            echo "<h3>Reservations de " . $this->_nom . "</h3>";
+            echo "<h1> Reservations " . $this->_nom . "</h1>";
             echo "Cet hotel n'a aucune reservation pour le moment.";
         } else {
-            echo "<h3>Reservation de " . $this->_nom . "</h3>";
-            echo "Adresse : " . $this->_adresse . " " . $this->_codePostal . " " . $this->_ville . "<br>" .
+             echo "<h1>Reservation de " . $this->_nom . "</h1>";
+            echo "<br>Adresse : " . $this->_adresse . " " . $this->_codePostal . " " . $this->_ville . "<br>" .
                 "Nombre de chambres : " . count($this->_chambres) . "<br>" .
                 "Nombre de réservations : " . count($this->_reservations) . "<br>" .
                 "Nombre de chambres libres : " . (count($this->_chambres) - count($this->_reservations)) . "<br>";
         }
+    }
+
+
+    public function afficherChambresHotel()
+    {
+        $chambres = " ";
+        foreach ($this->getChambres() as $chambre) {
+            $chambres .= $chambre . "<br>";
+        }
+        
+        if (empty($this->getChambres())) {
+            $chambres = "Pas de chambres dans l'hôtel";
+        }
+        echo "<h2> Chambres de l'hôtel " . $this->getNom() . "</h2>" . $chambres;
+    }
+
+    public function afficherStatutChambres(){
+        $result = "<h1> Status des chambre de <b> ". $this->_nom." </b></h1>
+                <table>
+                 <thead>
+                    <tr>
+                        <th>Chambre</th>
+                        <th>Prix</th>
+                        <th>Wifi</th>
+                        <th>Statut</th>
+                    </tr>
+                 </thead><tbody>";
+        
+        foreach ($this->_chambres as $chambre){
+            //declaration variable
+            $numero = $chambre->getNumero();
+            $prix = $chambre->getPrix();
+            $wifi = $chambre->getWifi();
+            $etat = $chambre->getStatus();
+
+            //if else de l'état de la chambre
+            $etat = ($etat) ? "Reservé" : "Disponible";
+            $wifi = ($wifi) ? "oui" : "non";
+ 
+            //Affichage du tableau
+            $result.= "
+                        <tr>
+                            <td> Chambre ". $numero."</td>
+                            <td>". $prix."</td>
+                            <td>". $wifi."</td>
+                            <td>". $etat."</td>
+                        </tr>";
+        }
+
+        echo $result;
+        echo "  </tbody>
+             </table>";
+
+    }
+    public function afficherReservationsHotel() {
+         $result = "<h1>Reservation de". $this ."</h1>
+         Nombre de réservations : " .count($this->_reservations) ."<br>";
+        $total = 0;
+        foreach ($this->_reservations as $reservation) {
+           if (count($this->_reservations) == 0)
+            {
+                echo "Aucune reservation !";
+            }
+           else  {
+            echo $result.= "reservation ".$this->_nom;
+            echo "Adresse : ".$this->_adresse. " ".$this->_codePostal. " ".$this->_ville."<br>".
+            "Nombre de chambre : ".count ($this->_chambres) ."<br>
+            Nombre de réservations : " .count($this->_reservations) ."<br>
+            Nombre de chambre libre : ". (count ($this->_chambres)-count($this->_reservations))."<br>";
+           }
+        }
+        return $result;
     }
 
     public function __toString(): string

@@ -6,6 +6,9 @@ spl_autoload_register(function ($class_name)
     require_once $class_name . '.php';
 });
 
+echo "<h1>POO Hotel</h1><br>
+<p>A partir de ces captures d’écran, réaliser l’application en POO permettant la gestion de réservations 
+de chambres par des clients dans différents hôtels : </p>";
 // Création des hôtels
 $hilton = new Hotel ("Hilton", "10 route de la Gare", "67000", "STRASBOURG");
 $regent = new Hotel ("Regent", "14 avenue des Champs Elysées", "75000", "Paris");
@@ -25,71 +28,35 @@ foreach(range(1,30)as $num)
 }
 
 // Création des chambres
-$chambre1 = new Chambre(1, 50.0, 2, true, $regent, true);
-$chambre2 = new Chambre(2, 70.0, 3, true, $regent, true);
-$chambre3 = new Chambre(3, 100.0, 4, true, $regent, true);
-$chambre4 = new Chambre(4, 80.0, 2, true, $hilton, true);
-$chambre5 = new Chambre(5, 120.0, 4, true, $hilton, true);
+$chambre1 = new Chambre($regent, $num, 2, 50.0,  true);
+$chambre2 = new Chambre($regent, $num, 3, 70.0,  true);
+$chambre3 = new Chambre($regent, $num, 4, 100.0,  true);
+$chambre4 = new Chambre($hilton, $num, 2, 80.0,  true);
+$chambre5 = new Chambre($hilton, $num, 4, 120.0,  true);
 
 // Création des clients
 $virgile = new Client ("GIBELLO","Virgile");
 $micka = new Client ("MURMANN", "Micka");
 
 // Création des réservations
-$reservationHilton = new Reservation($hilton, "2023-02-25", "2023-03-01", $chambre4, $virgile);
-$reservationRegent = new Reservation($regent, "2023-02-26", "2023-03-02", $chambre1, $micka);
+$reservationHilton = new Reservation("2023-02-25", "2023-03-01", $chambre4, $virgile);
+$reservationHilton = new Reservation("2023-02-25", "2023-03-01", $chambre5, $virgile);
+$reservationRegent = new Reservation("2023-02-26", "2023-03-02", $chambre1, $micka);
 
-// Ajout des réservations aux clients
-$virgile->ajouterReservation($reservationHilton);
-$micka->ajouterReservation($reservationRegent);
+
 
 // Affichage des réservations des clients
 echo $virgile->afficherReservations();
 echo $micka->afficherReservations();
 
+$hilton->AfficherDetails();
+// $hilton->afficherReservationsHotel();
+$regent->afficherReservationsHotel();
+
 // Fonction pour afficher les chambres d'un hôtel
-function afficherChambresHotel(Hotel $hotel)
-{
-    $chambres = "";
-foreach ($hotel->getChambres() as $chambre) {
-    $chambres .= $chambre . "<br>";
-}
-}
 
-   
-
-    if (empty($chambres)) {
-        $chambres = "Pas de chambres dans l'hôtel";
-    }
-    
-    
-    echo "<h2>Chambres de l'hôtel " . $hotel->getNomHotel() . "</h2>" . $chambres;
-    afficherChambresHotel($Regent);
-    afficherChambresHotel($Hilton);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$regent->afficherChambresHotel();
+   $hilton-> afficherChambresHotel();
+   $hilton->afficherStatutChambres();
+   $regent-> afficherStatutChambres();
 ?>

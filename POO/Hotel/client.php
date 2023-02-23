@@ -40,15 +40,15 @@ class Client
 
     //METHODES
     public function afficherReservations() {
-        $result = "<h1>Reservation de $this</h1> Nombre de réservations : " .count($this->_reservations) ."<br>";
-        $total = 0;;
+        $result = "<h1>Reservation de ". $this."</h1> Nombre de réservations : " .count($this->_reservations) ."<br>";
+        $total = 0;
         foreach ($this->_reservations as $reservation) {
            if (count($this->_reservations) == 0)
             {
                 echo "Ce client n'as pas de reservation";
             }
            else  {
-            echo $reservation->getChambre()->getHotel()->getNom(). " - Chambre : ".$reservation->getChambre(). " du ".$reservation->dateDebut." au ".$reservation->dateFin;
+            $result.= $reservation->getChambre()->gethotel()->getNom(). " - Chambre : ".$reservation->getChambre(). " du ".$reservation->getDateDebut()." au ".$reservation->getDateFin()."<br>";
            }
         }
         return $result;
