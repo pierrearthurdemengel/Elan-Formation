@@ -1,59 +1,67 @@
 <?php
 class Client
 {
-    private string $nom;
-    private string $prenom;
-    private DateTime $dateNaissance;
-    private array $reservations;
+    private string $_nom;
+    private string $_prenom;
+    private array $_reservations;
 
     public function __construct(string $nom, string $prenom)
     {
         // initialisation
-        $this->nom = $nom; 
-        $this->prenom = $prenom;
-        $this->reservations = [];
+        $this->_nom = $nom; 
+        $this->_prenom = $prenom;
+        $this->_reservations = [];
     }
 
+
+    // GETTERS ET SETTERS
     public function getNom(): string
     {
-        return $this->nom;
+        return $this->_nom;
     }
-    
+    public function setNom(string $nom){
+        $this->_nom = $nom;
+    }
     public function getPrenom(): string
     {
-        return $this->prenom;
+        return $this->_prenom;
+    }
+    public function setPrenom(string $prenom){
+        $this->_prenom = $prenom;
     }
     
 
     public function ajouterReservation(Reservation $reservation) 
     {
-        $this->reservations[] = $reservation;
+        $this->_reservations[] = $reservation;
     }
+
+
+
+    //METHODES
     public function afficherReservations() {
-        $result = "<h1>Reservation de $this>/h1>";
-        foreach ($this->reservations as $reservation) {
-            $result .= $reservation."<br>";
+        $result = "<h1>Reservation de $this</h1> Nombre de réservations : " .count($this->_reservations) ."<br>";
+        $total = 0;;
+        foreach ($this->_reservations as $reservation) {
+           if (count($this->_reservations) == 0)
+            {
+                echo "Ce client n'as pas de reservation";
+            }
+           else  {
+            echo $reservation->getChambre()->getHotel()->getNom(). " - Chambre : ".$reservation->getChambre(). " du ".$reservation->dateDebut." au ".$reservation->dateFin;
+           }
         }
         return $result;
     }
 
-    public function ajouterReservations(Reservation $reservations)
+    public function ajouterReservations(Reservation $_reservations)
     {
-        $this->reservations = $reservations;
+        $this->_reservations[] = $_reservations;
     }
-
-public function afficherReservation() {
-        $result ="<h1>Reservation $this</h1>";
-        foreach ($this->reservations as $reservation) {
-            $result .= $reservation->JoursReserves()." (". $reservation->getClient().getChambre().")<br>";
-        }
-        return $result;
-    }
-
 
     public function __toString(): string
     {
-        return $this->prenom . ' ' . $this->nom."né le ".$this->dateNaissance." dont le numéro client est : ";
+        return $this->_prenom . ' ' . $this->_nom;
     }
 }
 ?>

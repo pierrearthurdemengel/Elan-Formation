@@ -7,8 +7,8 @@ spl_autoload_register(function ($class_name)
 });
 
 // Création des hôtels
-$Hilton = new Hotel ("Hilton", "10 route de la Gare", "67000", "STRASBOURG");
-$Regent = new Hotel ("Regent", "14 avenue des Champs Elysées", "75000", "Paris");
+$hilton = new Hotel ("Hilton", "10 route de la Gare", "67000", "STRASBOURG");
+$regent = new Hotel ("Regent", "14 avenue des Champs Elysées", "75000", "Paris");
 
 foreach(range(1,30)as $num)
 {
@@ -25,19 +25,19 @@ foreach(range(1,30)as $num)
 }
 
 // Création des chambres
-$chambre1 = new Chambre(1, 50.0, 2, true, $Regent, true);
-$chambre2 = new Chambre(2, 70.0, 3, true, $Regent, true);
-$chambre3 = new Chambre(3, 100.0, 4, true, $Regent, true);
-$chambre4 = new Chambre(4, 80.0, 2, true, $Hilton, true);
-$chambre5 = new Chambre(5, 120.0, 4, true, $Hilton, true);
+$chambre1 = new Chambre(1, 50.0, 2, true, $regent, true);
+$chambre2 = new Chambre(2, 70.0, 3, true, $regent, true);
+$chambre3 = new Chambre(3, 100.0, 4, true, $regent, true);
+$chambre4 = new Chambre(4, 80.0, 2, true, $hilton, true);
+$chambre5 = new Chambre(5, 120.0, 4, true, $hilton, true);
 
 // Création des clients
 $virgile = new Client ("GIBELLO","Virgile");
 $micka = new Client ("MURMANN", "Micka");
 
 // Création des réservations
-$reservationHilton = new Reservation($Hilton, "2023-02-25", "2023-03-01", $chambre4, $virgile);
-$reservationRegent = new Reservation($Regent, "2023-02-26", "2023-03-02", $chambre1, $micka);
+$reservationHilton = new Reservation($hilton, "2023-02-25", "2023-03-01", $chambre4, $virgile);
+$reservationRegent = new Reservation($regent, "2023-02-26", "2023-03-02", $chambre1, $micka);
 
 // Ajout des réservations aux clients
 $virgile->ajouterReservation($reservationHilton);
@@ -51,7 +51,7 @@ echo $micka->afficherReservations();
 function afficherChambresHotel(Hotel $hotel)
 {
     $chambres = "";
-foreach ($hotel->getChambre() as $chambre) {
+foreach ($hotel->getChambres() as $chambre) {
     $chambres .= $chambre . "<br>";
 }
 }
