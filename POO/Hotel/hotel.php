@@ -1,31 +1,37 @@
 <?php
 class Hotel
 {
-    private string $nomHotel;
     private string $adresse;
-    private array $chambres;
+    private string $ville;
+    private string $CP;
+    private string $nomHotel;
+    private Reservation $reservation;
 
-    public function __construct (string $nomHotel)
+
+    public function __construct ( string $nomHotel, string $adresse, string $ville, string $CP)
     {
         $this-> nomHotel = $nomHotel;
-        $this-> chambres = [];
+        $this-> reservation = $reservation;
+
+        $this-> adresse = $adresse;
     }
 
     public function ajouterChambre(Chambre $chambre) 
     {
-        $this->chambres[] = $chambre;
+        $this->reservation[] = $chambre;
     }
 
-    public function afficherChambres() 
+    public function afficherreservation() 
     {
         $result = "<h1>Chambre de ". $this->nomHotel."/h1>";
-        foreach ($this->chambres as $chambre) {
+        foreach ($this->reservation as $chambre) {
             $result .= $chambre."<br>";
         }
         return $result;
     }
 
-    public function __toString() {
+    public function __toString() 
+    {
         return $this->nomHotel;
     }
 }
