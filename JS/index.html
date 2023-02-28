@@ -12,6 +12,7 @@
         <div id="board"></div>
 
         <script>
+            const nbOfBoxes = parseInt(prompt("Entrez le nombre de boites souhaité :"));
         // Définition de la fonction shuffleChildren qui mélange les éléments enfants d'un parent donné
             function shuffleChildren(parent){
                 let children = parent.children;
@@ -24,6 +25,20 @@
                         parent.appendChild(temp)
                     }
             }
+
+            function showReaction(type, clickedBox)
+            {
+                clickedBox.classList.add("box-"+type)
+                if(type !== "success"){
+                    setTimeout(function(){
+                        clickedBox.classList.remove("box-"+type)
+                        board.querySelectorAll(".box-clicked").forEach(function (validBox) {
+                            validBox.classList.remove("box-clicked");
+                        });
+                        shuffleChildren(board)
+                    }, 800)
+                }
+            }
        
             // Création d'une boîte (élément du DOM) avec une classe "box"
             const box = document.createElement("div")
@@ -34,7 +49,7 @@
 
             let nb = 1
 
-            for(let i = 1; i <= 10; i++)
+            for(let i = 1; i <= nbOfBoxes; i++)
             {   
                 const newbox = box.cloneNode()
                 newbox.innerText = i
@@ -47,13 +62,15 @@
                         newbox.classList.add("box-clicked")
                     //1
                         if(nb == board.children.length){
-                            alert("VICTOIRE !")
+                            bard.querySelectorAll(".box").forEach(function(box){
+                                showReaction("success", box)
+                            })
                         }
                         nb++
                     }
                     //2
                     else if(i > nb) {
-                    alert("Erreur, recommencez !");
+                    showReaction("error", newbox);
                     // Réinitialisation de la variable nb pour recommencer la séquence
                     nb = 1;
                     // Suppression de la classe "box-valid" de toutes les boîtes correctes précédemment cliquées
@@ -63,7 +80,7 @@
                 }
                     //3
                     else{
-                        alert("Case déjà cliquée !")
+                        showReaction("notice", newbox)
                     }
                 })
             }
