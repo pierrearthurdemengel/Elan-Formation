@@ -10,8 +10,36 @@
     <body>
 
         <div id="board"></div>
+        <div id="timer"></div>
 
         <script>
+
+const timer = document.querySelector("#timer");
+const startTime = new Date().getTime();
+        let nb = 1;
+        let t = null;
+
+        function compte() {
+            const currentTime = new Date().getTime();
+            const diff = currentTime - startTime;
+            const seconds = Math.floor(diff / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const displaySeconds = seconds % 60;
+            const displayMinutes = minutes % 60;
+            const displayHours = hours % 24;
+            timer.innerHTML = `${displayHours.toString().padStart(2, '0')}:${displayMinutes.toString().padStart(2, '0')}:${displaySeconds.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            t = setInterval(compte, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(t);
+        }
+
+
             const nbOfBoxes = parseInt(prompt("Entrez le nombre de boites souhaité :"));
         // Définition de la fonction shuffleChildren qui mélange les éléments enfants d'un parent donné
             function shuffleChildren(parent){
@@ -44,10 +72,7 @@
             const box = document.createElement("div")
             box.classList.add("box")
 
-        // Création d'une boîte (élément du DOM) avec une classe "box"
-            const board = document.querySelector("#board")
-
-            let nb = 1
+            startTimer();
 
             for(let i = 1; i <= nbOfBoxes; i++)
             {   
@@ -62,9 +87,10 @@
                         newbox.classList.add("box-clicked")
                     //1
                         if(nb == board.children.length){
-                            bard.querySelectorAll(".box").forEach(function(box){
+                            board.querySelectorAll(".box").forEach(function(box){
                                 showReaction("success", box)
                             })
+                            stopTimer();
                         }
                         nb++
                     }
