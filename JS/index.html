@@ -56,7 +56,7 @@
                 board.appendChild(newbox)
 
                 newbox.addEventListener("click", function()
-                {
+                {   shuffleChildren(board)
                     if (i == nb) 
                     {   
                         newbox.classList.add("box-clicked")
