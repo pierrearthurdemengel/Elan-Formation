@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test JS</title>
+</head>
+<body>
+    <h1>Decription du DOM</h1>
+    <ul>
+        <li>
+            le Dom est une interface de programmation
+        </li>
+        <li>
+            L'acronyme signifie : Document Object Model
+        </li>
+        <li>
+            Il représente les noeuds interconnectés (balises) d'une page html
+        </li>
+    </ul>
+</body>
+<script>
+
+                    /* Atteindre le DOM */
+    
+    let list = document.querySelector("ul") // pointe le premier élément en string
+
+    let listElements = list.querySelectorAll("li") //partant de la variable list (et non plus du document) afin de récupérer tous les éléments enfants de CETTE ul
+
+    console.log("la liste", list) // une balise ul accompagnée de tous les nœuds enfants qu'elle contient. On constate également que chaque li à l'intérieur est composée d'un pseudo élément ::marker (la puce) et d'un nœud de texte (entre guillemets).
+    console.log("les éléments", listElements) //retourne objet NodeList contenant les trois li dans un tableaux indexé
+
+                    /* ! Modifier le DOM */
+    
+    listElements.forEach(function(element) //boucle forEach sur la NodeList pour    les modifier une à une
+    {
+        element.style.color = "red"
+    })
+
+                    /* Consulter e les propriétés d'un élément du DOM */
+
+    listElements.forEach(function(element){
+        console.dir(element)
+        element.style.color = "red"
+    }) /*console.log() présenterait l'élément de manière interactive, à la manière de l'inspecteur 
+d'éléments du navigateur, console.dir() listera ses composantes d'objet JavaScript*/
+
+</script>
+</html>
