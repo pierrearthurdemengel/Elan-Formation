@@ -23,6 +23,4 @@ formulaire), ajoutera le produit avec son nom, son prix, sa quantité et le tota
 }
     header("location:index.php"); // header en dernier dans le scipt ou utliser tout de suite après exit() ou die()
     //Impossible de mettre deux headers , le second écraseant le premier
-    
-
 ?>
