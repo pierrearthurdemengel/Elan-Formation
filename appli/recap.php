@@ -32,7 +32,7 @@ F?phpsession_start(); 5
                 "</thead>",
                 "<tbody>";
 
-                foreach ($_SESSION['products'] as index => ){
+                foreach ($_SESSION['products'] as index => $product){
                     echo "<tr>",
                             "<td>". $index. "</td>",
                             "<td>". $product['name']. "</td>",
