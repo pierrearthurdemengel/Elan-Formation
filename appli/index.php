@@ -29,8 +29,18 @@
             </label>
         </p>
         <p>
-            <input type="submit" name="submit" value="Ajouter le produit">
-        </p> 
+            <label>
+                <textarea id="story" name="story" rows="5" cols="33">
+                    Expliquez pourquoi vous avez choisit ce fruit
+                </textarea>
+            </label>
+            <p>
+                <input type="submit" name="submit" value="Ajouter le produit">
+            </p> 
+
+        </p>
     </form>
 </body>
 </html>
+
+{# http://localhost/Pierre-Arthur/Partie-1/appli/index.php #}
