@@ -31,20 +31,32 @@ F?phpsession_start(); 5
                   "</tr>",
                 "</thead>",
                 "<tbody>";
-
-                foreach ($_SESSION['products'] as $index => $product){
-                    echo "<tr>",
+              
+                $totalGeneral = 0;
+                foreach ($_SESSION['products'] as $index => $product)
+                {
+                        echo "<tr>",
                             "<td>". $index. "</td>",
                             "<td>". $product['name']. "</td>",
-                            "<td>". $product['price']. "</td>",
+                            "<td>". number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                             "<td>". $product['qtt']. "</td>",
-                            "<td>". $product['total']. "</td>",
+                            "<td>". number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                          "</tr>";
+                        $totalGeneral+= $product['total'];
                 }
-                echo "</tbody>",
-                "</table>";
-                
-                
+                echo "<tr>",
+                        "<td colspan=\"2\">Total de ". $totalGeneral. " produits</td>",
+                        "<td><trong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</trong></td>",
+                        "</tr>",
+                        "</tbody>";
+
+                /* number_format(
+variable à modifier, 
+nombre de décimales souhaité, 
+caractère séparateur décimal,
+caractère séparateur de milliers5
+);
+*/
     }
     ?>
 </body> 
