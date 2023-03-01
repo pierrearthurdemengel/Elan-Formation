@@ -17,7 +17,7 @@ formulaire), ajoutera le produit avec son nom, son prix, sa quantité et le tota
                 "total" => $price*$qtt
             ];
 
-            $_SESSION['product'][] = $product;
+            $_SESSION['products'][] = $product;
 
     }
 }
