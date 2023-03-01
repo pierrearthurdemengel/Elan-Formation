@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport” content=" width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Ajout produit</title>
 </head>
 
 <body>
-    <hi>Ajouter un produit</hi>
-    <form action="traitement.php" method="post">
+    <h1>Ajouter un produit</h1>
+    <form id="form" action="traitement.php" method="post">
         <p>
             <label>
                 Nom du produit :
@@ -30,7 +31,7 @@
         </p>
         <p>
             <label>
-                <textarea id="story" name="story" rows="5" cols="33">
+                <textarea id="story" name="story" rows="4" cols="100">
                     Expliquez pourquoi vous avez choisit ce fruit
                 </textarea>
             </label>
