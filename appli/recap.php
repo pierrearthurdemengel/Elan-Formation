@@ -15,7 +15,7 @@ F?phpsession_start(); 5
 <body>
     <?php var_dump($_SESSION); 
     
-    if(!isset($_SESSION['products']) || empty($_SESSION['products']))
+    if(!isset($_SESSION['product']) || empty($_SESSION['product']))
     {
         echo "<p>Aucun produit en session...</p>";
     }
@@ -33,7 +33,7 @@ F?phpsession_start(); 5
                 "<tbody>";
               
                 $totalGeneral = 0;
-                foreach ($_SESSION['products'] as $index => $product)
+                foreach ($_SESSION['product'] as $index => $product)
                 {
                         echo "<tr>",
                             "<td>". $index. "</td>",
@@ -45,7 +45,7 @@ F?phpsession_start(); 5
                         $totalGeneral+= $product['total'];
                 }
                 echo "<tr>",
-                        "<td colspan=\"2\">Total de ". $totalGeneral. " produits</td>",
+                        "<td colspan=2>Total général : </td>",
                         "<td><trong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</trong></td>",
                         "</tr>",
                         "</tbody>";
