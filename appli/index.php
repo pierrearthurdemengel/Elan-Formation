@@ -4,7 +4,8 @@ if (!isset($_SESSION['product'])) {
     $_SESSION['product'] = array();
 }
 
-function countFruits() {
+function countFruits()
+{
     $count = 0;
     if (!empty($_SESSION['product'])) {
         foreach ($_SESSION['product'] as $product) {

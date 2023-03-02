@@ -15,7 +15,7 @@ session_start();
 <body>
     <?php
     // var_dump($_SESSION);
-    
+
     if (!isset($_SESSION['product']) || empty($_SESSION['product'])) {
         echo "<p>Aucun produit en session...</p>";
     } else {
@@ -46,7 +46,8 @@ session_start();
     "<td colspan=2>Total général : </td>",
     "</tr>",
     "</tbody>";
-    function countFruits() {
+    function countFruits()
+    {
         $count = 0;
         if (!empty($_SESSION['product'])) {
             foreach ($_SESSION['product'] as $product) {
@@ -63,7 +64,6 @@ session_start();
         <a href="index.php">Retour</a>
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
-
 </body>
 
 </html>

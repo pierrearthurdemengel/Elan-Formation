@@ -1,85 +1,86 @@
 * {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
 
-;
-
 h1 {
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 1px;
-    margin-inline-end: 1px;
-    font-weight: bold;
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 1px;
+  margin-inline-end: 1px;
+  font-weight: bold;
 }
 
 input {
-    writing-mode: horizontal-tb;
-    text-rendering: auto;
-    color: fieldtext; 
-    letter-spacing: normal;
-    word-spacing: normal;
-    line-height: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    appearance: auto;
-    -webkit-rtl-ordering: logical;
-    cursor: text;
-    background-color: field;
-    margin: 0em;
-    padding: 1px 2px;
-    border-width: 2px;
-    border-style: inset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial;
-    border-radius: 5px;
+  writing-mode: horizontal-tb;
+  text-rendering: auto;
+  color: fieldtext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  background-color: field;
+  margin: 0em;
+  padding: 1px 2px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+  border-radius: 5px;
 }
 
 textarea {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 #form p {
-    color: rgb(7, 10, 76);
+  color: rgb(7, 10, 76);
 }
 
 #form input {
-    color: black;
-    background-color: rgb(206, 229, 255);
+  color: black;
+  background-color: rgb(206, 229, 255);
 }
 
 table {
-    border-collapse: collapse;
-    min-width: 400px;
-    width: auto;
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15);
-    cursor:pointer;
-    margin: 100px auto;
-    border: 1px solid #ddd;
+  border-collapse: collapse;
+  min-width: 400px;
+  width: auto;
+  box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  margin: 100px auto;
+  border: 1px solid #ddd;
 }
 
 th {
-    background-color: midnightblue;
-    color: #fff;
-    text-align: left;
+  background-color: midnightblue;
+  color: #fff;
+  text-align: left;
 }
 
-th, td {
-    padding: 15px 20px;
+th,
+td {
+  padding: 15px 20px;
 }
 
-tbody tr, td, th {
-    border: 1px solid #ddd;
+tbody tr,
+td,
+th {
+  border: 1px solid #ddd;
 }
 
-tbody tr:nth-child(even){
-    background-color: #f3f3f3;
+tbody tr:nth-child(even) {
+  background-color: #f3f3f3;
 }
 
-tbody tr:last-of-type{
-    border-bottom: 2px solid midnightblue;
+tbody tr:last-of-type {
+  border-bottom: 2px solid midnightblue;
 }
