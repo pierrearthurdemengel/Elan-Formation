@@ -15,18 +15,9 @@ h1 {
 }
 
 input {
-    writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
+    writing-mode: horizontal-tb;
     text-rendering: auto;
-    color: fieldtext;
+    color: fieldtext; 
     letter-spacing: normal;
     word-spacing: normal;
     line-height: normal;
@@ -59,4 +50,36 @@ textarea {
 #form input {
     color: black;
     background-color: rgb(206, 229, 255);
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 400px;
+    width: auto;
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15);
+    cursor:pointer;
+    margin: 100px auto;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: midnightblue;
+    color: #fff;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px 20px;
+}
+
+tbody tr, td, th {
+    border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even){
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type{
+    border-bottom: 2px solid midnightblue;
 }
