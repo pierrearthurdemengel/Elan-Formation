@@ -73,6 +73,8 @@ function countFruits()
         <a href="recap.php">Page Récap</a>
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
+</br>
+
 </body>
 
 </html>

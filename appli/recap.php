@@ -1,5 +1,21 @@
 <?php
 session_start();
+
+// Function qui supprime un produit
+if (isset($_POST['deleteProduct'])) {
+    $productIndex = $_POST['productIndex'];
+    unset($_SESSION['product'][$productIndex]);
+    header('Location: recap.php');
+    exit;
+}
+// Function qui supprime toute la session
+function deleteAllProducts()
+{
+    unset($_SESSION['product']);
+    header('Location: recap.php');
+    exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +29,25 @@ session_start();
 
 
 <body>
+    <!-- HTML supprimer un produit -->
+<h1>Supprimer un produit</h1>
+    <form method="post">
+        <label for="productIndex">Sélectionnez le produit à supprimer :</label>
+        <select name="productIndex" id="productIndex">
+            <?php foreach ($_SESSION['product'] as $index => $product): ?>
+                <option value="<?php echo $index; ?>"><?php echo $product['name']; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit" name="deleteProduct">Supprimer</button>
+    </form>
+    <!-- HTML Bouton tout supprimer -->
+    <button onclick="deleteAllProducts()">Supprimer tous les produits</button>
     <?php
+
+
     // var_dump($_SESSION);
 
+    // Vérifie qu'il y a un produit
     if (!isset($_SESSION['product']) || empty($_SESSION['product'])) {
         echo "<p>Aucun produit en session...</p>";
     } else {
@@ -46,6 +78,8 @@ session_start();
     "<td colspan=2>Total général : </td>",
     "</tr>",
     "</tbody>";
+
+    // Function qui compte le nombre de produit
     function countFruits()
     {
         $count = 0;
@@ -60,6 +94,7 @@ session_start();
     }
         ?>
     
+    <!-- Bouton de navigation -->
     <button>
         <a href="index.php">Retour</a>
     </button>
