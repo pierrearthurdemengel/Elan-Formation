@@ -17,6 +17,9 @@ if (isset($_POST['submit'])) {
             "justification" => $justification,
         ];
         $_SESSION['product'][] = $product;
+        $_SESSION['success_message'] = "Le produit a été ajouté avec succès.";
+    } else {
+        $_SESSION['error_message'] = "Erreur : Veuillez vérifier les informations saisies.";
     }
     function countFruits()
     {
@@ -33,3 +36,4 @@ if (isset($_POST['submit'])) {
 }
 header("location:index.php"); // header en dernier dans le scipt ou utliser tout de suite après exit() ou die()
 //Impossible de mettre deux headers , le second écraseant le premier
+?>

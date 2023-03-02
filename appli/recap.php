@@ -58,12 +58,12 @@ session_start();
         }
         return $count;
     }
-    ?>
-
+        ?>
+    
     <button>
         <a href="index.php">Retour</a>
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
-</body>
-
-</html>
+    </body>
+    
+    </html>

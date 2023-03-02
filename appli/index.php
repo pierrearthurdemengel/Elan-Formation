@@ -3,7 +3,16 @@ session_start();
 if (!isset($_SESSION['product'])) {
     $_SESSION['product'] = array();
 }
+// Afficher les messages de succès ou d'erreur s'ils existent
+if (isset($_SESSION['success_message'])) {
+    echo "<div class='success-message'>" . $_SESSION['success_message'] . "</div>";
+    unset($_SESSION['success_message']);
+}
 
+if (isset($_SESSION['error_message'])) {
+    echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
+    unset($_SESSION['error_message']);
+}
 function countFruits()
 {
     $count = 0;
@@ -51,7 +60,7 @@ function countFruits()
         </p>
         <p>
             <label>
-                <textarea id="story" name="story" rows="4" cols="100">
+                <textarea id="justification" name="justification" rows="4" cols="100">
                     Expliquez pourquoi vous avez choisit ce fruit
                 </textarea>
             </label>
