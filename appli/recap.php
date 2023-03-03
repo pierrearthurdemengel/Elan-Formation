@@ -50,7 +50,7 @@ function countProducts()
     <!-- HTML supprimer un produit -->
     <h1>Supprimer un produit</h1>
     <form method="POST">
-        <label for="productIndex">Sélectionnez le produit à supprimer :</label>
+        <label for="productIndex">Sélectionnez le produit à supprimer :</label>;
         <select name="productIndex" id="productIndex">
             <?php foreach ($_SESSION['product'] as $index => $product) : ?>
                 <option value="<?php echo $index; ?>"><?php echo $product['name']; ?></option>
@@ -112,9 +112,3 @@ function countProducts()
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
 </body>
-
-<!-- Bouton tout supprimer
-    <form method="POST" onsubmit="deleteAllProducts(); return false;">
-    <button type="submit">Tout supprimer</button>
-    </form>
-    </html>  -->
