@@ -88,13 +88,16 @@ function countProducts()
     foreach ($_SESSION['product'] as $index => $product) {
         echo "<tr>",
         "<td>" . $index . "</td>",
-        "<td>" . $product['name'] . "</td>",
+        "<td><a href='traitement.php?action=detail&id=$index'>". $product['name'] . "</a></td>",
         "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
-        "<td>" . $product['quantity'] . "</td>",
-        "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
-        "<td>" . $product['justification'] . "</td>",
-        "<td>" .
-            "</tr>";
+        "<td>",
+            "<a href='traitement.php?action=down-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-dash'></i></a>",
+            "<span class='p-2'>".$product["qtt"]."</span>",
+            "<a href='traitement.php?action=up-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-plus'></i></a>",
+        "</td>",
+        "<td>" . number_format($total, 2, ",", "&nbsp;") . "&nbsp;€</td>",
+        "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><i class='bi-trash'></i></a></td>",
+        "</tr>";
     }
     echo "<tr>",
     "<td colspan=2>Total général : </td>",

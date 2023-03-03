@@ -47,13 +47,11 @@ if(isset($_GET['action'])){
                 
                 //* ----------SUPPRIMER UN PRODUIT---------------------
         case "delete":
-
-                    if (isset($_POST['deleteProduct'])) {
-                        $productIndex = $_POST['productIndex'];
-                        unset($_SESSION['product']);
-                        header('Location: recap.php');
-                        exit;
+                //vérifier si le paramètre "id" est défini dans l'URL et vérifier si le produit existe en session
+                if(isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])){
+                    $deletProd= $_SESSION
                     }
+                    else $_SESSION["message"] = "Action impossible !";
                 break;
                     
                     
