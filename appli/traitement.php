@@ -8,6 +8,7 @@ if(isset($_GET['action'])){
     switch($_GET['action']){
         
         //* ----------AJOUTER UN PRODUIT-----------------------
+        // ajouter un produit (traitement.php?action=ajouterProduit)
         case "add":
             if (isset($_POST['submit'])) {
                 // Filtrer les inputs du formulaire
@@ -48,6 +49,7 @@ if(isset($_GET['action'])){
                 break;
                 
                 //* ----------SUPPRIMER UN PRODUIT---------------------
+                // supprimer un produit :  traitement.php?action=supprimerProduit&id=XXX
         case "delete":
                 //vérifier si le paramètre "id" est défini dans l'URL et vérifier si le produit existe en session
                 if(isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])){
@@ -64,6 +66,7 @@ if(isset($_GET['action'])){
                     
                     
                     //* ----------VIDER LE PANIER--------------------------
+                    // vider le panier (traitement.php?action=viderPanier)
         case "clear": 
                         //supprimer le tableau de produits en session
                 unset($_SESSION["products"]);
@@ -72,6 +75,7 @@ if(isset($_GET['action'])){
                 die();
 
         //* ----------AUGMENTER QUANTITE PRODUIT----------------
+        // augmenter la quantité : traitement.php?action=augmenterQtt&id=XXX
         case "up-qtt":
             if (isset($_POST['updateQuantity'])) {
               $productIndex = $_POST['productIndex'];
@@ -87,6 +91,7 @@ if(isset($_GET['action'])){
             }
           break;
         //* ----------DIMINUER QUANTITE PRODUIT----------------
+        // baisser la quantité :  traitement.php?action=baisserQtt&id=XXX
         case "down-qtt":
         //* ----------DETAIL PRODUIT----------------
         case "detail":

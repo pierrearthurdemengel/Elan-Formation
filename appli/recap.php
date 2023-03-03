@@ -40,7 +40,7 @@ function countProducts()
             event.preventDefault();
 
             // Supprime la session
-            sessionStorage.clear();
+            session_unset(); session_destroy();
 
             // Redirige l'utilisateur vers la page d'accueil ou toute autre page souhaitée
             window.location.href = '/';
@@ -112,3 +112,4 @@ function countProducts()
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
 </body>
+</html>
