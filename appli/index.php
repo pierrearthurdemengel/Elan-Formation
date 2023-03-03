@@ -42,7 +42,7 @@ function countFruits()
 
 <body>
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php?action=add" method="POST" enctype="multipart form-data">
+    <form action="traitement.php?action=add" method="POST" enctype="multipart/form-data">
         <p>
             <label>
                 Nom du produit :
