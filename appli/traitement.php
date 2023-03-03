@@ -20,7 +20,7 @@ if(isset($_GET['action'])){
                     $product = [
                         "name" => $name,
                         "price" => $price,
-                        "quantity" => $qtt,
+                        "qtt" => $qtt,
                         "total" => $price * $qtt,
                         "justification" => $justification,
                     ];
@@ -77,7 +77,7 @@ if(isset($_GET['action'])){
               $productIndex = $_POST['productIndex'];
               $newQuantity = filter_input(INPUT_POST, "newQuantity", FILTER_VALIDATE_INT);
               if ($newQuantity) {
-                $_SESSION['product'][$productIndex]['quantity'] = $newQuantity;
+                $_SESSION['product'][$productIndex]['qtt'] = $newQuantity;
                 $_SESSION['success_message'] = "La quantité du produit a été mise à jour avec succès.";
               } else {
                 $_SESSION['error_message'] = "Erreur : Veuillez saisir une quantité valide.";
@@ -101,7 +101,7 @@ if(isset($_GET['action'])){
         if (isset($_SESSION['product']) && !empty($_SESSION['product'])) {
             foreach ($_SESSION['product'] as $product) {
                 if ($product['name'] === 'Fruit') {
-                    $count += $product['quantity'];
+                    $count += $product['qtt'];
                 }
             }
         }
