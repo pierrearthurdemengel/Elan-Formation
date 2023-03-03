@@ -22,7 +22,7 @@ function countFruits()
     if (!empty($_SESSION['product'])) {
         foreach ($_SESSION['product'] as $product) {
             if (isset($product['name'])) {
-                $count += $product['quantity'];
+                $count += $product['qtt'];
             }
         }
     }

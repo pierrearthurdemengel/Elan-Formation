@@ -78,7 +78,7 @@ function countProducts()
         "<th>#</th>",
         "<th>Nom</th>",
         "<th>Prix</th>",
-        "<th>Quantité</th>",
+        "<th>Qtt</th>",
         "<th>Total</th>",
         "<th>justification</th>",
         "</tr>",
