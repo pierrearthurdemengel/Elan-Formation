@@ -1,4 +1,6 @@
 <!-- Page traitement -->
+
+<!-- fichier.php?argument1=XXX&argument2=YYY&argument3=ZZZ -->
 <?php
 session_start();
 
@@ -49,9 +51,14 @@ if(isset($_GET['action'])){
         case "delete":
                 //vérifier si le paramètre "id" est défini dans l'URL et vérifier si le produit existe en session
                 if(isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])){
-                    $deletProd= $_SESSION
+                    $deletProd= $_SESSION["products"][$_GET["id"]];
+                    //supprimer le produit de la session
+                    unset($_SESSION["products"][$_GET["id"]]);
+                    //redirection
+                    header("Location: recap.php");
+                    die();
                     }
-                    else $_SESSION["message"] = "Action impossible !";
+                else $_SESSION["message"] = "Action impossible !";
                 break;
                     
                     
