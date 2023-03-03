@@ -1,10 +1,9 @@
 <!-- Page recap -->
-
 <?php
 session_start();
 
-// Function qui compte le nombre de produit
-function countFruits()
+// Fonction qui compte le nombre de produits
+function countProducts()
 {
     $count = 0;
     if (!empty($_SESSION['product'])) {
@@ -28,30 +27,32 @@ function countFruits()
     <title>Récapitulatif des produits</title>
 </head>
 
-
 <body>
-<script>                                //JS deleteAllProducts
-// Récupère le bouton de soumission
-const deleteSessionBtn = document.querySelector('button[name="deleteSession"]');
+    <!-- Script JS pour supprimer tous les produits -->
+    <script>
+        //JS deleteAllProducts
+        // Récupère le bouton de soumission
+        const deleteSessionBtn = document.querySelector('button[name="deleteSession"]');
 
-// Attache un événement de clic au bouton de soumission
-deleteSessionBtn.addEventListener('click', function(event) {
-  // Empêche la soumission du formulaire
-  event.preventDefault();
+        // Attache un événement de clic au bouton de soumission
+        deleteSessionBtn.addEventListener('click', function(event) {
+            // Empêche la soumission du formulaire
+            event.preventDefault();
 
-  // Supprime la session
-  sessionStorage.clear();
+            // Supprime la session
+            sessionStorage.clear();
 
-  // Redirige l'utilisateur vers la page d'accueil ou toute autre page souhaitée
-  window.location.href = '/';
-});
-</script>
+            // Redirige l'utilisateur vers la page d'accueil ou toute autre page souhaitée
+            window.location.href = '/';
+        });
+    </script>
+
     <!-- HTML supprimer un produit -->
-<h1>Supprimer un produit</h1>
+    <h1>Supprimer un produit</h1>
     <form method="POST">
         <label for="productIndex">Sélectionnez le produit à supprimer :</label>
         <select name="productIndex" id="productIndex">
-            <?php foreach ($_SESSION['product'] as $index => $product): ?>
+            <?php foreach ($_SESSION['product'] as $index => $product) : ?>
                 <option value="<?php echo $index; ?>"><?php echo $product['name']; ?></option>
             <?php endforeach; ?>
         </select>
@@ -61,9 +62,9 @@ deleteSessionBtn.addEventListener('click', function(event) {
     <!-- HTML supprimer session -->
     <h1>Tout supprimer</h1>
 
-<form method="POST">
-    <button type="submit" name="deleteSession">Supprimer toute la session</button>
-</form>
+    <form method="POST">
+        <button type="submit" name="deleteSession">Supprimer toute la session</button>
+    </form>
 
     <?php
 
@@ -93,23 +94,23 @@ deleteSessionBtn.addEventListener('click', function(event) {
         "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
         "<td>" . $product['justification'] . "</td>",
         "<td>" .
-        "</tr>";
+            "</tr>";
     }
     echo "<tr>",
     "<td colspan=2>Total général : </td>",
     "</tr>",
     "</tbody>";
-    
-            ?>
-    
+
+    ?>
+
     <!-- Bouton de navigation -->
     <button>
         <a href="index.php">Retour</a>
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
-    </body>
+</body>
 
-     <!-- Bouton tout supprimer
+<!-- Bouton tout supprimer
     <form method="POST" onsubmit="deleteAllProducts(); return false;">
     <button type="submit">Tout supprimer</button>
     </form>
