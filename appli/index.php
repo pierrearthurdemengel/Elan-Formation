@@ -2,6 +2,7 @@
 
 <?php
 session_start();
+ob_start();
 if (!isset($_SESSION['product'])) {
     $_SESSION['product'] = array();
 }

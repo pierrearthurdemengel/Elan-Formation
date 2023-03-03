@@ -2,6 +2,44 @@
 <?php
 session_start();
 
+if(isset($_GET['action'])){
+    switch($_GET['action']){
+        
+        //* ----------AJOUTER UN PRODUIT-----------------------
+        case "add":
+            if (isset($_POST['submit'])) {
+
+                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+                $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // filter = protection injection SQL
+                $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
+                $justification = filter_input(INPUT_POST, "justification", FILTER_SANITIZE_STRING);
+
+
+
+
+
+
+
+
+
+
+
+        //* ----------SUPPRIMER UN PRODUIT---------------------
+        case "delete":
+        //* ----------VIDER LE PANIER--------------------------
+        case "clear":
+        //* ----------AUGMENTER QUANTITE PRODUIT----------------
+        case "up-qtt":
+        //* ----------DIMINUER QUANTITE PRODUIT----------------
+        case "down-qtt":
+        //* ----------DETAIL PRODUIT----------------
+        case "detail":
+        }
+}
+
+    header("location:index.php");
+
+
 // Fonction pour supprimer tous les produits
 function deleteAllProducts() {
   unset($_SESSION['product']);
@@ -53,7 +91,6 @@ if (isset($_POST['deleteProduct'])) {
     header('Location: recap.php');
     exit;
 }
-header("location:index.php");
 ?>
 <script>
 // Récupère le bouton de soumission
