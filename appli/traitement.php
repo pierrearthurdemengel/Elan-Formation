@@ -46,7 +46,7 @@ if(isset($_GET['action'])){
                 break;
                 
                 //* ----------SUPPRIMER UN PRODUIT---------------------
-                case "delete":
+        case "delete":
 
                     if (isset($_POST['deleteProduct'])) {
                         $productIndex = $_POST['productIndex'];
@@ -54,31 +54,18 @@ if(isset($_GET['action'])){
                         header('Location: recap.php');
                         exit;
                     }
-                    break;
+                break;
                     
                     
                     
                     //* ----------VIDER LE PANIER--------------------------
-                    case "clear": 
-                        // Function qui supprime toute la session
-                        function deleteAllProducts()
-                        {
-                            if (isset($_POST['deleteProduct'])) {
-                                $productIndex = $_POST['productIndex'];
-                                unset($_SESSION['product'][$productIndex]);
-                                header('Location: recap.php');
-                                exit;
-                            }
-                        }
-              // function deleteAllProducts() {
-              //   unset($_SESSION['product']);
-              //   $_SESSION['success_message'] = "Tous les produits ont été supprimés avec succès.";
-              // }
-                            // Si le bouton pour tout supprimer est cliqué
-if (isset($_POST['deleteAllProducts'])) {
-    deleteAllProducts();
-}
-break;
+        case "clear": 
+                        //supprimer le tableau de produits en session
+                unset($_SESSION["products"]);
+                        //redirection
+                header("Location: recap.php");
+                die();
+
         //* ----------AUGMENTER QUANTITE PRODUIT----------------
         case "up-qtt":
             if (isset($_POST['updateQuantity'])) {
