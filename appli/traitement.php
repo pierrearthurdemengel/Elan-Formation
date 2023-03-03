@@ -8,28 +8,92 @@ if(isset($_GET['action'])){
         //* ----------AJOUTER UN PRODUIT-----------------------
         case "add":
             if (isset($_POST['submit'])) {
-
+                // Filtrer les inputs du formulaire
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // filter = protection injection SQL
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
                 $justification = filter_input(INPUT_POST, "justification", FILTER_SANITIZE_STRING);
+                
+                if ($name && $price && $qtt) {
+                    $product = [
+                        "name" => $name,
+                        "price" => $price,
+                        "quantity" => $qtt,
+                        "total" => $price * $qtt,
+                        "justification" => $justification,
+                    ];
+                    $_SESSION['product'][] = $product;
+                    $_SESSION['success_message'] = "Le produit a été ajouté avec succès.";
+                } else {
+                    $_SESSION['error_message'] = "Erreur : Veuillez vérifier les informations saisies.";
+                }
+            }
 
+// récuperer les infos de l'image uploadée
+                if(isset($_FILES['file'])){
 
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $nameImg = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
+                    $error = $_FILES['file']['error'];
 
+// récupérer l'extension du fichier uploadé
+                    $tabExtension = explode('.', $nameImg);
+                    $extension = strtolower(end($tabExtension));
+//Tableau des extensions acceptées
+                    $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                }
+                break;
+                
+                //* ----------SUPPRIMER UN PRODUIT---------------------
+                case "delete":
 
-
-
-
-
-
-
-
-        //* ----------SUPPRIMER UN PRODUIT---------------------
-        case "delete":
-        //* ----------VIDER LE PANIER--------------------------
-        case "clear":
+                    if (isset($_POST['deleteProduct'])) {
+                        $productIndex = $_POST['productIndex'];
+                        unset($_SESSION['product']);
+                        header('Location: recap.php');
+                        exit;
+                    }
+                    break;
+                    
+                    
+                    
+                    //* ----------VIDER LE PANIER--------------------------
+                    case "clear": 
+                        // Function qui supprime toute la session
+                        function deleteAllProducts()
+                        {
+                            if (isset($_POST['deleteProduct'])) {
+                                $productIndex = $_POST['productIndex'];
+                                unset($_SESSION['product'][$productIndex]);
+                                header('Location: recap.php');
+                                exit;
+                            }
+                        }
+              // function deleteAllProducts() {
+              //   unset($_SESSION['product']);
+              //   $_SESSION['success_message'] = "Tous les produits ont été supprimés avec succès.";
+              // }
+                            // Si le bouton pour tout supprimer est cliqué
+if (isset($_POST['deleteAllProducts'])) {
+    deleteAllProducts();
+}
+break;
         //* ----------AUGMENTER QUANTITE PRODUIT----------------
         case "up-qtt":
+            if (isset($_POST['updateQuantity'])) {
+              $productIndex = $_POST['productIndex'];
+              $newQuantity = filter_input(INPUT_POST, "newQuantity", FILTER_VALIDATE_INT);
+              if ($newQuantity) {
+                $_SESSION['product'][$productIndex]['quantity'] = $newQuantity;
+                $_SESSION['success_message'] = "La quantité du produit a été mise à jour avec succès.";
+              } else {
+                $_SESSION['error_message'] = "Erreur : Veuillez saisir une quantité valide.";
+              }
+              header('Location: recap.php');
+              exit;
+            }
+          break;
         //* ----------DIMINUER QUANTITE PRODUIT----------------
         case "down-qtt":
         //* ----------DETAIL PRODUIT----------------
@@ -39,33 +103,6 @@ if(isset($_GET['action'])){
 
     header("location:index.php");
 
-
-// Fonction pour supprimer tous les produits
-function deleteAllProducts() {
-  unset($_SESSION['product']);
-  $_SESSION['success_message'] = "Tous les produits ont été supprimés avec succès.";
-}
-
-if (isset($_POST['submit'])) {
-
-    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-    $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // filter = protection injection SQL
-    $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-    $justification = filter_input(INPUT_POST, "justification", FILTER_SANITIZE_STRING);
-
-    if ($name && $price && $qtt) {
-        $product = [
-            "name" => $name,
-            "price" => $price,
-            "quantity" => $qtt,
-            "total" => $price * $qtt,
-            "justification" => $justification,
-        ];
-        $_SESSION['product'][] = $product;
-        $_SESSION['success_message'] = "Le produit a été ajouté avec succès.";
-    } else {
-        $_SESSION['error_message'] = "Erreur : Veuillez vérifier les informations saisies.";
-    }
 
     function countFruits() {
         $count = 0;
@@ -78,34 +115,6 @@ if (isset($_POST['submit'])) {
         }
         return $count;
     }
-}
-
-// Vérifie si le bouton de suppression a été cliqué
-if (isset($_POST['deleteAll'])) {
-    deleteAllProducts();
-}
-// Function qui supprime un produit
-if (isset($_POST['deleteProduct'])) {
-    $productIndex = $_POST['productIndex'];
-    unset($_SESSION['product']);
-    header('Location: recap.php');
-    exit;
-}
 ?>
-<script>
-// Récupère le bouton de soumission
-const deleteSessionBtn = document.querySelector('button[name="deleteSession"]');
 
-// Attache un événement de clic au bouton de soumission
-deleteSessionBtn.addEventListener('click', function(event) {
-  // Empêche la soumission du formulaire
-  event.preventDefault();
-
-  // Supprime la session
-  sessionStorage.clear();
-
-  // Redirige l'utilisateur vers la page d'accueil ou toute autre page souhaitée
-  window.location.href = '/';
-});
-</script>
 

@@ -3,22 +3,6 @@
 <?php
 session_start();
 
-
-// Function qui supprime toute la session
-function deleteAllProducts()
-{
-    if (isset($_POST['deleteProduct'])) {
-        $productIndex = $_POST['productIndex'];
-        unset($_SESSION['product'][$productIndex]);
-        header('Location: recap.php');
-        exit;
-}}
-
-// Si le bouton pour tout supprimer est cliqué
-if (isset($_POST['deleteAllProducts'])) {
-    deleteAllProducts();
-}
-
 // Function qui compte le nombre de produit
 function countFruits()
 {
@@ -46,9 +30,25 @@ function countFruits()
 
 
 <body>
+<script>                                //JS deleteAllProducts
+// Récupère le bouton de soumission
+const deleteSessionBtn = document.querySelector('button[name="deleteSession"]');
+
+// Attache un événement de clic au bouton de soumission
+deleteSessionBtn.addEventListener('click', function(event) {
+  // Empêche la soumission du formulaire
+  event.preventDefault();
+
+  // Supprime la session
+  sessionStorage.clear();
+
+  // Redirige l'utilisateur vers la page d'accueil ou toute autre page souhaitée
+  window.location.href = '/';
+});
+</script>
     <!-- HTML supprimer un produit -->
 <h1>Supprimer un produit</h1>
-    <form method="post">
+    <form method="POST">
         <label for="productIndex">Sélectionnez le produit à supprimer :</label>
         <select name="productIndex" id="productIndex">
             <?php foreach ($_SESSION['product'] as $index => $product): ?>
@@ -61,7 +61,7 @@ function countFruits()
     <!-- HTML supprimer session -->
     <h1>Tout supprimer</h1>
 
-<form method="post">
+<form method="POST">
     <button type="submit" name="deleteSession">Supprimer toute la session</button>
 </form>
 
@@ -92,6 +92,7 @@ function countFruits()
         "<td>" . $product['quantity'] . "</td>",
         "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
         "<td>" . $product['justification'] . "</td>",
+        "<td>" .
         "</tr>";
     }
     echo "<tr>",
@@ -109,7 +110,7 @@ function countFruits()
     </body>
 
      <!-- Bouton tout supprimer
-    <form method="post" onsubmit="deleteAllProducts(); return false;">
+    <form method="POST" onsubmit="deleteAllProducts(); return false;">
     <button type="submit">Tout supprimer</button>
     </form>
     </html>  -->
