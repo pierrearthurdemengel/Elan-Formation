@@ -1,19 +1,36 @@
+<!-- Page recap -->
+
 <?php
 session_start();
 
-// Function qui supprime un produit
-if (isset($_POST['deleteProduct'])) {
-    $productIndex = $_POST['productIndex'];
-    unset($_SESSION['product'][$productIndex]);
-    header('Location: recap.php');
-    exit;
-}
+
 // Function qui supprime toute la session
 function deleteAllProducts()
 {
-    unset($_SESSION['product']);
-    header('Location: recap.php');
-    exit;
+    if (isset($_POST['deleteProduct'])) {
+        $productIndex = $_POST['productIndex'];
+        unset($_SESSION['product'][$productIndex]);
+        header('Location: recap.php');
+        exit;
+}}
+
+// Si le bouton pour tout supprimer est cliqué
+if (isset($_POST['deleteAllProducts'])) {
+    deleteAllProducts();
+}
+
+// Function qui compte le nombre de produit
+function countFruits()
+{
+    $count = 0;
+    if (!empty($_SESSION['product'])) {
+        foreach ($_SESSION['product'] as $product) {
+            if (isset($product['name'])) {
+                $count += $product['quantity'];
+            }
+        }
+    }
+    return $count;
 }
 
 ?>
@@ -40,12 +57,15 @@ function deleteAllProducts()
         </select>
         <button type="submit" name="deleteProduct">Supprimer</button>
     </form>
-    <!-- HTML Bouton tout supprimer -->
-    <button onclick="deleteAllProducts()">Supprimer tous les produits</button>
+
+    <!-- HTML supprimer session -->
+    <h1>Tout supprimer</h1>
+
+<form method="post">
+    <button type="submit" name="deleteSession">Supprimer toute la session</button>
+</form>
+
     <?php
-
-
-    // var_dump($_SESSION);
 
     // Vérifie qu'il y a un produit
     if (!isset($_SESSION['product']) || empty($_SESSION['product'])) {
@@ -78,21 +98,8 @@ function deleteAllProducts()
     "<td colspan=2>Total général : </td>",
     "</tr>",
     "</tbody>";
-
-    // Function qui compte le nombre de produit
-    function countFruits()
-    {
-        $count = 0;
-        if (!empty($_SESSION['product'])) {
-            foreach ($_SESSION['product'] as $product) {
-                if (isset($product['name'])) {
-                    $count += $product['quantity'];
-                }
-            }
-        }
-        return $count;
-    }
-        ?>
+    
+            ?>
     
     <!-- Bouton de navigation -->
     <button>
@@ -100,5 +107,9 @@ function deleteAllProducts()
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
     </body>
-    
-    </html>
+
+     <!-- Bouton tout supprimer
+    <form method="post" onsubmit="deleteAllProducts(); return false;">
+    <button type="submit">Tout supprimer</button>
+    </form>
+    </html>  -->
