@@ -1,6 +1,49 @@
     <!-- Page index -->
 
 <?php
+
+// img php
+
+if(isset($_FILES['file'])) //fonction isset vérifie si la clé existe
+{
+    var_dump($_POST);
+    var_dump($_FILES);
+    $tmpName = $_FILES['file']['tmp_name'];
+    $name = $_FILES['file']['name'];
+    $error = $_FILES['file']['error'];
+    $error = $_FILES['file']['type'];
+
+    // salon.jpg
+    // ['salon', 'jpg']
+    $tabExtension = explode('.', $name);
+    var_dump($tabExtension);  
+    $extension = strtolower(end($tabExtension));
+
+    //Tableau des extensions qu'on autorise
+    $extensionAutorisees = ['jpg', 'jpeg','gif','png'];
+    $tailleMax = 4000000;
+
+    var_dump(in_array($extension, $extensionAutorisees));
+    var_dump($size <= $tailleMax);
+    var_dump($error == 0);
+ 
+
+    if(in_array($extension, $extensionAutorisees) && $size <= $tailleMax && $error == 0 ){
+       
+       $uniqueName = uniqid('', true);
+       $fileName = $uniqueName.'.'.$extension;
+       
+        move_uploaded_file($tmpName, './upload/'.$name);
+    } else {
+        echo "Mauvaise extension - Format Image ou taille trop importante - max 4000000";
+    }
+
+    move_uploaded_file($tmpName, './recap.php'.$name);
+}
+
+
+
+
 session_start();
 ob_start();
 if (!isset($_SESSION['product'])) {
@@ -77,7 +120,11 @@ function countFruits()
     </button>
     <p>Nombre de fruits : <?php echo countFruits(); ?></p>
 </br>
-
+    <form action="index.php" method='POST' enctype="multipart/form-data">
+        <label for="file"></label>
+        <input type='file' name="file">
+        <button type="submit">Enregister</button>
+    </form>
 </body>
 
 </html>
