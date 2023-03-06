@@ -79,9 +79,10 @@ function countFruits()
             "</thead>",
             "<tbody>";
     }
+    $totalGeneral = 0;
     foreach ($_SESSION['products'] as $index => $product) {
-
-        // $total = $product['qtt'] * $product['price'];
+        $total = $product['qtt'] * $product['price'];
+        $totalGeneral += $total;
         echo "<tr>",
             "<td>" . $index . "</td>",
             "<td><a href='traitement.php?action=detail&id=" . $index . "'>" . $product['name'] . "</a></td>",
@@ -91,7 +92,7 @@ function countFruits()
             "<span class='p-2'>" . $product["qtt"] . "</span>",
             "<a href='traitement.php?action=up-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-plus'></i></a>",
             "</td>",
-            "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+            "<td>" . number_format($total, 2, ",", "&nbsp;") . "&nbsp;€</td>",
             "<td>" . $product['justification'] . "</td>",
             "<td><a href='traitement.php?action=up-qtt&id=$index' class='btn btn(danger btn-sm'><span class='material-symbols-outlined'>
             add</span></a></td>",
@@ -100,12 +101,13 @@ function countFruits()
             "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><span class='material-symbols-outlined'>
             delete</span></a></td>",
             "</tr>";
+
     }
     echo "<tr>",
-        "<td colspan=2>Total général : </td>",
+        "<td colspan=2>Prix du panier : </td>",
+        "<td>" . $totalGeneral . "</td>",
         "</tr>",
         "</tbody>";
-
     ?>
 
     <!-- Bouton de navigation -->

@@ -93,6 +93,7 @@ if (isset($_GET['action'])) {
             if (isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])) {
                 $_SESSION["products"][$_GET["id"]]["qtt"]++;
                 $_SESSION['success_message'] = "Vous avez ajoutez un produit.";
+
                 header("location:recap.php");
                 die();
             }
