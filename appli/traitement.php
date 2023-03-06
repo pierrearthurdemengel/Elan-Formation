@@ -81,10 +81,17 @@ if (isset($_GET['action'])) {
         //* ----------VIDER LE PANIER--------------------------
         // vider le panier (traitement.php?action=viderPanier)
         case "deleteSession":
-            //supprimer le tableau de produits en session
-            unset($_SESSION["products"]);
-            //redirection
+            if (isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])) {
+                //supprimer le tableau de produits en session
+                unset($_SESSION["products"]);
+                echo "Vous avez supprimez le panier";
+                //redirection
+                header("Location: recap.php");
+                die();
+            } else
+                $_SESSION["error_message"] = "Panier déjà vide !";
             header("Location: recap.php");
+
             break;
 
         //* ----------AUGMENTER QUANTITE PRODUIT----------------
@@ -118,7 +125,7 @@ if (isset($_GET['action'])) {
     }
 }
 
-header("location:index.php");
+//header("location:index.php");
 
 
 function countFruits()
