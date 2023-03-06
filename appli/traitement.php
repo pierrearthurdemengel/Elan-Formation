@@ -5,7 +5,7 @@
 session_start();
 
 // demarre session ou récupérer une session existante
-
+$i = 0;
 if (isset($_GET['action'])) {
     // s'il y a le mot action dans l'URL
     switch ($_GET['action']) {
@@ -18,10 +18,10 @@ if (isset($_GET['action'])) {
                 // si j'ai appuyé sur le bouton dans mon formulaire qui est en méthode post
                 // Filtrer les inputs du formulaire
                 // filter les inputs afin de me protéger de la faille xss
-                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // filter = protection injection SQL
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-                $justification = filter_input(INPUT_POST, "justification", FILTER_SANITIZE_STRING);
+                $justification = filter_input(INPUT_POST, "justification", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
                 if ($name && $price && $qtt) {
                     // si les variabes existent et don ont été filtré correctement
@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                         "price" => $price,
                         "qtt" => $qtt,
                         "total" => $price * $qtt,
-                        "justification" => $justification,
+                        "justification" => $justification
                     ];
                     $_SESSION['products'][] = $product;
                     // on array push mon tableau produit dans products stockké  en session 
@@ -39,6 +39,8 @@ if (isset($_GET['action'])) {
                 } else {
                     $_SESSION['error_message'] = "Erreur : Veuillez vérifier les informations saisies.";
                 }
+                header("Location: recap.php");
+                die;
             }
 
             // récuperer les infos de l'image uploadée
@@ -88,19 +90,17 @@ if (isset($_GET['action'])) {
         //* ----------AUGMENTER QUANTITE PRODUIT----------------
         // augmenter la quantité : traitement.php?action=augmenterQtt&id=XXX
         case "up-qtt":
-            if (isset($_POST['up-qtt'])) {
-                $products = $_POST['qtt'];
-                if ($newQuantity) {
-                    $_SESSION['products'][$products]['qtt'] = $newQuantity;
-                    $newQuantity++;
-                    $_SESSION['success_message'] = "La quantité du produit a été mise à jour avec succès.";
-                } else {
-                    $_SESSION['error_message'] = "Erreur : Veuillez saisir une quantité valide.";
-                }
+            if (isset($_POST["id"]) && isset($_SESSION["products"][$_POST["id"]])) {
+                $product["qtt"] = $qtt++;
+                $_SESSION['success_message'] = "La quantité du produit a été mise à jour avec succès.";
+
                 header('Location: recap.php');
-                exit;
+                die();
             }
-            break;
+
+
+
+
         //* ----------DIMINUER QUANTITE PRODUIT----------------
         // baisser la quantité :  traitement.php?action=baisserQtt&id=XXX
         case "down-qtt":
@@ -109,7 +109,7 @@ if (isset($_GET['action'])) {
     }
 }
 
-// header("location:index.php");
+header("location:index.php");
 
 
 function countFruits()
@@ -124,22 +124,23 @@ function countFruits()
     }
     return $count;
 }
+;
+
+
+// <!-- 
+
+// session -- une session est une période délimitée pendant laquelle un appareil informatique est en communication et réalise des opérations au service d'un client - un usager, un logiciel ou un autre appareil.
+// superglobale -- variables array internes au PHP accessibles n’importe où dans le script qui s'inscrivent TOUJOURS en majuscule
+// cookie -- Un cookie, c'est un petit fichier que l'on enregistre sur l'ordinateur du visiteur. Ce fichier contient du texte et permet de « retenir » des informations sur le visiteur.
+// requete http -- protocole qui contrôle la façon dont le client formule ses demandes et la façon dont le serveur y répond
+// faille xss -- Cross-Site Scripting est une faille qui permet d'injecter du code HTML et/ou Javascript dans des variables ou bases de données mal protégées
+
+
+
+// ssession = une session en PHP correspond à une façon de stocker des données différentes pour chaque utilisateur en utilisant un identifiant de session unique.
+// Les identifiants de session vont généralement être envoyés au navigateur via des cookies de session et vont être utilisés pour récupérer les données existantes de la session.
+// stocké côté serveur et l'avante est de garder des informations et pouvoir les récupérer de page en page
+// la duré de, vie d'une sesion c'est jusqu') dce que l'utilsateur ferme le navigateurou qu'on destry la session 
+// en php on utilise la super globale $_SESSION , tjs la forme d'un tableau associatif.  -->
+
 ?>
-
-
-<!-- 
-
-session -- une session est une période délimitée pendant laquelle un appareil informatique est en communication et réalise des opérations au service d'un client - un usager, un logiciel ou un autre appareil.
-superglobale -- variables array internes au PHP accessibles n’importe où dans le script qui s'inscrivent TOUJOURS en majuscule
-cookie -- Un cookie, c'est un petit fichier que l'on enregistre sur l'ordinateur du visiteur. Ce fichier contient du texte et permet de « retenir » des informations sur le visiteur.
-requete http -- protocole qui contrôle la façon dont le client formule ses demandes et la façon dont le serveur y répond
-faille xss -- Cross-Site Scripting est une faille qui permet d'injecter du code HTML et/ou Javascript dans des variables ou bases de données mal protégées
-
-
-
-ssession = une session en PHP correspond à une façon de stocker des données différentes pour chaque utilisateur en utilisant un identifiant de session unique.
-Les identifiants de session vont généralement être envoyés au navigateur via des cookies de session et vont être utilisés pour récupérer les données existantes de la session.
-stocké côté serveur et l'avante est de garder des informations et pouvoir les récupérer de page en page
-la duré de, vie d'une sesion c'est jusqu') dce que l'utilsateur ferme le navigateurou qu'on destry la session 
-en php on utilise la super globale $_SESSION , tjs la forme d'un tableau associatif. 
--->

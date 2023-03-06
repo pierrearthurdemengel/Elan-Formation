@@ -6,7 +6,6 @@ session_start();
 ob_start();
 // temporisation de sortie 
 // img php
-var_dump($_SESSION['products']);
 if (isset($_FILES['file'])) //fonction isset vérifie si la clé existe
 {
     var_dump($_POST);

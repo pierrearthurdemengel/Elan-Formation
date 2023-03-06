@@ -73,6 +73,8 @@ function countFruits()
             "<th>Qtt</th>",
             "<th>Total</th>",
             "<th>justification</th>",
+            "<th>ajouter un produit</th>",
+            "<th>supprimer un produit</th>",
             "</tr>",
             "</thead>",
             "<tbody>";
@@ -82,7 +84,7 @@ function countFruits()
         // $total = $product['qtt'] * $product['price'];
         echo "<tr>",
             "<td>" . $index . "</td>",
-            "<td><a href='traitement.php?action=detail&id=$index'>" . $product['name'] . "</a></td>",
+            "<td><a href='traitement.php?action=detail&id=" . $index . "'>" . $product['name'] . "</a></td>",
             "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
             "<td>",
             "<a href='traitement.php?action=down-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-dash'></i></a>",
@@ -90,11 +92,12 @@ function countFruits()
             "<a href='traitement.php?action=up-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-plus'></i></a>",
             "</td>",
             "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+            "<td>" . $product['justification'] . "</td>",
+            "<td><a href='traitement.php?action=up-qtt&id=$index' class='btn btn(danger btn-sm'><span class='material-symbols-outlined'>
+            up-qtt
+            </span></a></td>",
             "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><span class='material-symbols-outlined'>
             delete</span></a></td>",
-            "<td><a href='traitement.php?action=up-qtt' class='btn btn(danger btn-sm'><span class='material-symbols-outlined'>
-            add
-            </span></a></td>",
             "</tr>";
     }
     echo "<tr>",
