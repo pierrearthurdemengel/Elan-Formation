@@ -3,20 +3,20 @@
 session_start();
 
 // Fonction qui compte le nombre de produits
-function countProducts()
+function countFruits()
 {
     $count = 0;
-    if (!empty($_SESSION['product'])) {
-        foreach ($_SESSION['product'] as $product) {
+    if (!empty($_SESSION['products'])) {
+        foreach ($_SESSION['products'] as $product) {
             if (isset($product['name'])) {
                 $count += $product['qtt'];
             }
         }
     }
     return $count;
-}
+} ?>
 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +35,7 @@ function countProducts()
         const deleteSessionBtn = document.querySelector('button[name="deleteSession"]');
 
         // Attache un événement de clic au bouton de soumission
-        deleteSessionBtn.addEventListener('click', function(event) {
+        deleteSessionBtn.addEventListener('click', function (event) {
             // Empêche la soumission du formulaire
             event.preventDefault();
 
@@ -52,7 +52,7 @@ function countProducts()
     <form method="POST">
         <label for="productIndex">Sélectionnez le produit à supprimer :</label>;
         <select name="productIndex" id="productIndex">
-            <?php foreach ($_SESSION['product'] as $index => $product) : ?>
+            <?php foreach ($_SESSION['products'] as $index => $product): ?>
                 <option value="<?php echo $index; ?>"><?php echo $product['name']; ?></option>
             <?php endforeach; ?>
         </select>
@@ -69,40 +69,43 @@ function countProducts()
     <?php
 
     // Vérifie qu'il y a un produit
-    if (!isset($_SESSION['product']) || empty($_SESSION['product'])) {
+    if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
         echo "<p>Aucun produit en session...</p>";
     } else {
         echo "<table>",
-        "<thead>",
-        "<tr>",
-        "<th>#</th>",
-        "<th>Nom</th>",
-        "<th>Prix</th>",
-        "<th>Qtt</th>",
-        "<th>Total</th>",
-        "<th>justification</th>",
-        "</tr>",
-        "</thead>",
-        "<tbody>";
+            "<thead>",
+            "<tr>",
+            "<th>#</th>",
+            "<th>Nom</th>",
+            "<th>Prix</th>",
+            "<th>Qtt</th>",
+            "<th>Total</th>",
+            "<th>justification</th>",
+            "</tr>",
+            "</thead>",
+            "<tbody>";
     }
-    foreach ($_SESSION['product'] as $index => $product) {
+    foreach ($_SESSION['products'] as $index => $product) {
+
+        // $total = $product['qtt'] * $product['price'];
         echo "<tr>",
-        "<td>" . $index . "</td>",
-        "<td><a href='traitement.php?action=detail&id=$index'>". $product['name'] . "</a></td>",
-        "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
-        "<td>",
+            "<td>" . $index . "</td>",
+            "<td><a href='traitement.php?action=detail&id=$index'>" . $product['name'] . "</a></td>",
+            "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+            "<td>",
             "<a href='traitement.php?action=down-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-dash'></i></a>",
-            "<span class='p-2'>".$product["qtt"]."</span>",
+            "<span class='p-2'>" . $product["qtt"] . "</span>",
             "<a href='traitement.php?action=up-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-plus'></i></a>",
-        "</td>",
-        "<td>" . number_format($total, 2, ",", "&nbsp;") . "&nbsp;€</td>",
-        "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><i class='bi-trash'></i></a></td>",
-        "</tr>";
+            "</td>",
+            "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+            "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><i class='bi-trash'></i></a></td>",
+
+            "</tr>";
     }
     echo "<tr>",
-    "<td colspan=2>Total général : </td>",
-    "</tr>",
-    "</tbody>";
+        "<td colspan=2>Total général : </td>",
+        "</tr>",
+        "</tbody>";
 
     ?>
 
@@ -110,6 +113,10 @@ function countProducts()
     <button>
         <a href="index.php">Retour</a>
     </button>
-    <p>Nombre de fruits : <?php echo countFruits(); ?></p>
+
+    <p>Nombre de fruits :
+        <?php echo countFruits(); ?>
+    </p>
 </body>
+
 </html>

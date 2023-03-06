@@ -4,28 +4,37 @@
 <?php
 session_start();
 
+// demarre session ou récupérer une session existante
+
 if (isset($_GET['action'])) {
+    // s'il y a le mot action dans l'URL
     switch ($_GET['action']) {
+        // on va switch entre les différentes actions
 
         //* ----------AJOUTER UN PRODUIT-----------------------
         // ajouter un produit (traitement.php?action=ajouterProduit)
         case "add":
             if (isset($_POST['submit'])) {
+                // si j'ai appuyé sur le bouton dans mon formulaire qui est en méthode post
                 // Filtrer les inputs du formulaire
+                // filter les inputs afin de me protéger de la faille xss
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // filter = protection injection SQL
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
                 $justification = filter_input(INPUT_POST, "justification", FILTER_SANITIZE_STRING);
 
                 if ($name && $price && $qtt) {
+                    // si les variabes existent et don ont été filtré correctement
                     $product = [
+                        // on crée un tableau associatif produit auquel on attribue une valeur à une clé textuelle
                         "name" => $name,
                         "price" => $price,
                         "qtt" => $qtt,
                         "total" => $price * $qtt,
                         "justification" => $justification,
                     ];
-                    $_SESSION['product'][] = $product;
+                    $_SESSION['products'][] = $product;
+                    // on array push mon tableau produit dans products stockké  en session 
                     $_SESSION['success_message'] = "Le produit a été ajouté avec succès.";
                 } else {
                     $_SESSION['error_message'] = "Erreur : Veuillez vérifier les informations saisies.";
@@ -51,8 +60,10 @@ if (isset($_GET['action'])) {
         //* ----------SUPPRIMER UN PRODUIT---------------------
         // supprimer un produit :  traitement.php?action=supprimerProduit&id=XXX
         case "delete":
-            //vérifier si le paramètre "id" est défini dans l'URL et vérifier si le produit existe en session
+            // vérifier si le paramètre "id" est défini dans l'URL et vérifier si le produit existe en session
             if (isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])) {
+
+                //Si j'ai un ID et un prduit en session
                 $deletProd = $_SESSION["products"][$_GET["id"]];
                 //supprimer le produit de la session
                 unset($_SESSION["products"][$_GET["id"]]);
@@ -124,4 +135,11 @@ cookie -- Un cookie, c'est un petit fichier que l'on enregistre sur l'ordinateur
 requete http -- protocole qui contrôle la façon dont le client formule ses demandes et la façon dont le serveur y répond
 faille xss -- Cross-Site Scripting est une faille qui permet d'injecter du code HTML et/ou Javascript dans des variables ou bases de données mal protégées
 
+
+
+ssession = une session en PHP correspond à une façon de stocker des données différentes pour chaque utilisateur en utilisant un identifiant de session unique.
+Les identifiants de session vont généralement être envoyés au navigateur via des cookies de session et vont être utilisés pour récupérer les données existantes de la session.
+stocké côté serveur et l'avante est de garder des informations et pouvoir les récupérer de page en page
+la duré de, vie d'une sesion c'est jusqu') dce que l'utilsateur ferme le navigateurou qu'on destry la session 
+en php on utilise la super globale $_SESSION , tjs la forme d'un tableau associatif. 
 -->

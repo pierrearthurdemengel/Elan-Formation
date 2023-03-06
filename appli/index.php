@@ -1,10 +1,13 @@
-    <!-- Page index -->
+<!-- Page index -->
 
 <?php
+session_start();
 
+ob_start();
+// temporisation de sortie 
 // img php
-
-if(isset($_FILES['file'])) //fonction isset vérifie si la clé existe
+var_dump($_SESSION['products']);
+if (isset($_FILES['file'])) //fonction isset vérifie si la clé existe
 {
     var_dump($_POST);
     var_dump($_FILES);
@@ -16,36 +19,33 @@ if(isset($_FILES['file'])) //fonction isset vérifie si la clé existe
     // salon.jpg
     // ['salon', 'jpg']
     $tabExtension = explode('.', $name);
-    var_dump($tabExtension);  
+    var_dump($tabExtension);
     $extension = strtolower(end($tabExtension));
 
     //Tableau des extensions qu'on autorise
-    $extensionAutorisees = ['jpg', 'jpeg','gif','png'];
+    $extensionAutorisees = ['jpg', 'jpeg', 'gif', 'png'];
     $tailleMax = 4000000;
 
     var_dump(in_array($extension, $extensionAutorisees));
     var_dump($size <= $tailleMax);
     var_dump($error == 0);
- 
 
-    if(in_array($extension, $extensionAutorisees) && $size <= $tailleMax && $error == 0 ){
-       
-       $uniqueName = uniqid('', true);
-       $fileName = $uniqueName.'.'.$extension;
-       
-        move_uploaded_file($tmpName, './upload/'.$name);
+
+    if (in_array($extension, $extensionAutorisees) && $size <= $tailleMax && $error == 0) {
+
+        $uniqueName = uniqid('', true);
+        $fileName = $uniqueName . '.' . $extension;
+
+        move_uploaded_file($tmpName, './upload/' . $name);
     } else {
         echo "Mauvaise extension - Format Image ou taille trop importante - max 4000000";
     }
 
-    move_uploaded_file($tmpName, './recap.php'.$name);
+    move_uploaded_file($tmpName, './recap.php' . $name);
 }
 
 
 
-
-session_start();
-ob_start();
 if (!isset($_SESSION['product'])) {
     $_SESSION['product'] = array();
 }
@@ -118,8 +118,10 @@ function countFruits()
     <button>
         <a href="recap.php">Page Récap</a>
     </button>
-    <p>Nombre de fruits : <?php echo countFruits(); ?></p>
-</br>
+    <p>Nombre de fruits :
+        <?php echo countFruits(); ?>
+    </p>
+    </br>
     <form action="index.php" method='POST' enctype="multipart/form-data">
         <label for="file"></label>
         <input type='file' name="file">
