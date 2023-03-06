@@ -50,23 +50,12 @@ function countFruits()
         });
     </script>
 
-    <!-- HTML supprimer un produit -->
-    <h1>Supprimer un produit</h1>
-    <form method="POST">
-        <label for="productIndex">Sélectionnez le produit à supprimer :</label>;
-        <select name="productIndex" id="productIndex">
-            <?php foreach ($_SESSION['products'] as $index => $product): ?>
-                <option value="<?php echo $index; ?>"><?php echo $product['name']; ?></option>
-            <?php endforeach; ?>
-        </select>
-        <button type="submit" name="deleteProduct">Supprimer</button>
-    </form>
-
     <!-- HTML supprimer session -->
     <h1>Tout supprimer</h1>
 
     <form method="POST">
-        <button type="submit" name="deleteSession">Supprimer toute la session</button>
+        <a href='traitement.php?action=deleteSession&id=$index' class='btn btn-outline-danger'> Vider le panier
+            </span></a>
     </form>
 
     <?php
@@ -103,6 +92,9 @@ function countFruits()
             "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
             "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><span class='material-symbols-outlined'>
             delete</span></a></td>",
+            "<td><a href='traitement.php?action=up-qtt' class='btn btn(danger btn-sm'><span class='material-symbols-outlined'>
+            add
+            </span></a></td>",
             "</tr>";
     }
     echo "<tr>",

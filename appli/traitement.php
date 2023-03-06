@@ -78,7 +78,7 @@ if (isset($_GET['action'])) {
 
         //* ----------VIDER LE PANIER--------------------------
         // vider le panier (traitement.php?action=viderPanier)
-        case "clear":
+        case "deleteSession":
             //supprimer le tableau de produits en session
             unset($_SESSION["products"]);
             //redirection
@@ -88,11 +88,11 @@ if (isset($_GET['action'])) {
         //* ----------AUGMENTER QUANTITE PRODUIT----------------
         // augmenter la quantité : traitement.php?action=augmenterQtt&id=XXX
         case "up-qtt":
-            if (isset($_POST['updateQuantity'])) {
-                $productIndex = $_POST['productIndex'];
-                $newQuantity = filter_input(INPUT_POST, "newQuantity", FILTER_VALIDATE_INT);
+            if (isset($_POST['up-qtt'])) {
+                $products = $_POST['qtt'];
                 if ($newQuantity) {
-                    $_SESSION['products'][$productIndex]['qtt'] = $newQuantity;
+                    $_SESSION['products'][$products]['qtt'] = $newQuantity;
+                    $newQuantity++;
                     $_SESSION['success_message'] = "La quantité du produit a été mise à jour avec succès.";
                 } else {
                     $_SESSION['error_message'] = "Erreur : Veuillez saisir une quantité valide.";
@@ -109,7 +109,7 @@ if (isset($_GET['action'])) {
     }
 }
 
-header("location:index.php");
+// header("location:index.php");
 
 
 function countFruits()
