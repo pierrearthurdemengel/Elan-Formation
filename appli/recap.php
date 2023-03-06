@@ -25,6 +25,9 @@ function countFruits()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Récapitulatif des produits</title>
+    <!-----icone---->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -98,8 +101,8 @@ function countFruits()
             "<a href='traitement.php?action=up-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-plus'></i></a>",
             "</td>",
             "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
-            "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><i class='bi-trash'></i></a></td>",
-
+            "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><span class='material-symbols-outlined'>
+            delete</span></a></td>",
             "</tr>";
     }
     echo "<tr>",
