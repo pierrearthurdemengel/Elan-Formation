@@ -85,25 +85,33 @@ if (isset($_GET['action'])) {
             unset($_SESSION["products"]);
             //redirection
             header("Location: recap.php");
-            die();
+            break;
 
         //* ----------AUGMENTER QUANTITE PRODUIT----------------
         // augmenter la quantité : traitement.php?action=augmenterQtt&id=XXX
         case "up-qtt":
-            if (isset($_POST["id"]) && isset($_SESSION["products"][$_POST["id"]])) {
-                $product["qtt"] = $qtt++;
-                $_SESSION['success_message'] = "La quantité du produit a été mise à jour avec succès.";
-
-                header('Location: recap.php');
+            if (isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])) {
+                $_SESSION["products"][$_GET["id"]]["qtt"]++;
+                $_SESSION['success_message'] = "Vous avez ajoutez un produit.";
+                header("location:recap.php");
                 die();
             }
-
-
-
-
+            break;
         //* ----------DIMINUER QUANTITE PRODUIT----------------
         // baisser la quantité :  traitement.php?action=baisserQtt&id=XXX
         case "down-qtt":
+            if (isset($_GET["id"]) && isset($_SESSION["products"][$_GET["id"]])) {
+                $_SESSION["products"][$_GET["id"]]["qtt"]--;
+                $_SESSION['success_message'] = "Vous avez supprimez un produit.";
+                header("location:recap.php");
+
+                if ($_SESSION["products"][$_GET["id"]]["qtt"] == 0) {
+                    unset($_SESSION["products"][$_GET["id"]]);
+                    header("Location: recap.php");
+                }
+                die();
+            }
+            break;
         //* ----------DETAIL PRODUIT----------------
         case "detail":
     }

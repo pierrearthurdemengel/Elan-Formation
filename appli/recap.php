@@ -87,15 +87,16 @@ function countFruits()
             "<td><a href='traitement.php?action=detail&id=" . $index . "'>" . $product['name'] . "</a></td>",
             "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
             "<td>",
-            "<a href='traitement.php?action=down-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-dash'></i></a>",
+            "<a href='traitement.php?action=qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-dash'></i></a>",
             "<span class='p-2'>" . $product["qtt"] . "</span>",
             "<a href='traitement.php?action=up-qtt&id=$index' class='btn btn-primary btn-sm'><i class='bi-plus'></i></a>",
             "</td>",
             "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
             "<td>" . $product['justification'] . "</td>",
             "<td><a href='traitement.php?action=up-qtt&id=$index' class='btn btn(danger btn-sm'><span class='material-symbols-outlined'>
-            up-qtt
-            </span></a></td>",
+            add</span></a></td>",
+            "<td><a href='traitement.php?action=down-qtt&id=$index' class='btn btn(danger btn-sm'><span class='material-symbols-outlined'>
+            remove</span></a></td>",
             "<td><a href='traitement.php?action=delete&id=$index' class='btn btn-danger btn-sm'><span class='material-symbols-outlined'>
             delete</span></a></td>",
             "</tr>";
