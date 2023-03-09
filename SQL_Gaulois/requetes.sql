@@ -36,7 +36,16 @@ ORDER BY date_bataille
 
 -- 6. Nom des potions + coût de réalisation de la potion (trié par coût décroissant).
 
+SELECT nom_potion, SUM(i.cout_ingredient * c.qte) AS cout_potion 
+FROM composer c
+INNER JOIN ingredient i ON c.id_ingredient = i.id_ingredient
+INNER JOIN potion p ON c.id_potion = p.id_potion
+GROUP BY nom_potion
+ORDER BY cout_potion DESC 
+
 -- 7. Nom des ingrédients + coût + quantité de chaque ingrédient qui composent la potion 'Santé'.
+
+
 
 -- 8. Nom du ou des personnages qui ont pris le plus de casques dans la bataille 'Bataille du village 
 -- gaulois'.
