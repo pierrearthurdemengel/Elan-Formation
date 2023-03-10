@@ -73,7 +73,13 @@ INNER JOIN potion po ON po.id_potion = b.id_potion
 ORDER BY b.dose_boire DESC 
 
 -- 10. Nom de la bataille où le nombre de casques pris a été le plus important.
-0
+
+SELECT nom_bataille, pc.qte
+FROM prendre_casque pc
+INNER JOIN bataille b ON pc.id_bataille = pc.id_bataille
+ORDER BY pc.qte DESC 
+LIMIT 50
+
 -- 11. Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par 
 -- nombre décroissant)
 
