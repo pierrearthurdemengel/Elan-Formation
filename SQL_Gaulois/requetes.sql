@@ -61,10 +61,16 @@ FROM prendre_casque pc
 INNER JOIN personnage p ON pc.id_personnage = p.id_personnage
 INNER JOIN bataille b ON pc.id_bataille = b.id_bataille
 WHERE b.nom_bataille = 'Bataille du village gaulois'
-ORDER BY pc.qte;
+ORDER BY pc.qte
 
 -- 9. Nom des personnages et leur quantité de potion bue (en les classant du plus grand buveur 
 -- au plus petit).
+
+SELECT nom_personnage, b.dose_boire
+FROM boire b
+INNER JOIN personnage pe ON pe.id_personnage = b.id_personnage
+INNER JOIN potion po ON po.id_potion = b.id_potion
+ORDER BY b.dose_boire DESC 
 
 -- 10. Nom de la bataille où le nombre de casques pris a été le plus important.
 0
