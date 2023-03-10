@@ -108,4 +108,14 @@ ORDER BY compte DESC
 
 -- 14. Nom des personnages qui n'ont jamais bu aucune potion.
 
+SELECT nom_personnage
+FROM personnage pe
+LEFT JOIN boire b ON pe.id_personnage = b.id_personnage
+WHERE b.dose_boire IS NULL;
+
+-- LEFT JOIN permet de récupérer tous les personnages, même ceux qui n'ont jamais bu aucune potion. La table personnage est à gauche, et la table boire est à droite.
+-- La condition pe.id_personnage = b.id_personnage permet de lier les deux tables selon l'identifiant du personnage.
+-- La clause WHERE b.id_boire IS NULL permet de récupérer uniquement les personnages qui n'ont pas de ligne dans la table boire, c'est-à-dire ceux qui n'ont jamais bu aucune potion.
+
+
 -- 15. Nom du / des personnages qui n'ont pas le droit de boire de la potion 'Magique'.
