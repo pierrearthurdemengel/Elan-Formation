@@ -55,7 +55,14 @@ ORDER BY i.nom_ingredient;
 
 -- 8. Nom du ou des personnages qui ont pris le plus de casques dans la bataille 'Bataille du village 
 -- gaulois'.
-0
+
+SELECT nom_personnage, pc.qte
+FROM prendre_casque pc
+INNER JOIN personnage p ON pc.id_personnage = p.id_personnage
+INNER JOIN bataille b ON pc.id_bataille = b.id_bataille
+WHERE b.nom_bataille = 'Bataille du village gaulois'
+ORDER BY pc.qte;
+
 -- 9. Nom des personnages et leur quantité de potion bue (en les classant du plus grand buveur 
 -- au plus petit).
 
