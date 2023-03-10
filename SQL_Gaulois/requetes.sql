@@ -83,6 +83,12 @@ LIMIT 50
 -- 11. Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par 
 -- nombre décroissant)
 
+SELECT nom_type_casque, COUNT(c.id_casque) AS nombre_de_casques, SUM(c.cout_casque) AS cout_total
+FROM casque c
+INNER JOIN type_casque tc ON tc.id_type_casque = c.id_type_casque
+GROUP BY tc.nom_type_casque
+ORDER BY nombre_de_casques DESC
+
 -- 12. Nom des potions dont un des ingrédients est le poisson frais.
 
 -- 13. Nom du / des lieu(x) possédant le plus d'habitants, en dehors du village gaulois.
