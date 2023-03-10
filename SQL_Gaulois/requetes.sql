@@ -91,6 +91,12 @@ ORDER BY nombre_de_casques DESC
 
 -- 12. Nom des potions dont un des ingrédients est le poisson frais.
 
+SELECT nom_potion
+FROM composer c
+INNER JOIN potion p ON p.id_potion = c.id_potion
+INNER JOIN ingredient i ON i.id_ingredient = c.id_ingredient
+WHERE i.nom_ingredient = 'Poisson frais'
+
 -- 13. Nom du / des lieu(x) possédant le plus d'habitants, en dehors du village gaulois.
 0
 -- 14. Nom des personnages qui n'ont jamais bu aucune potion.
