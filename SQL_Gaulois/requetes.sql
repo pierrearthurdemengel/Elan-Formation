@@ -143,6 +143,7 @@ INSERT INTO autoriser_boire (id_potion, id_personnage)
 VALUES ('1', '12')
 
 -- C. Supprimez les casques grecs qui n'ont jamais été pris lors d'une bataille.
+id_type_casque = '2' et id_casque existe dans casque mais pas dans prendre_casque
 
 
 -- D. Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate.
