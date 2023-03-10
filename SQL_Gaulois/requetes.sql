@@ -98,7 +98,14 @@ INNER JOIN ingredient i ON i.id_ingredient = c.id_ingredient
 WHERE i.nom_ingredient = 'Poisson frais'
 
 -- 13. Nom du / des lieu(x) possédant le plus d'habitants, en dehors du village gaulois.
-0
+
+SELECT l.nom_lieu, COUNT(*) AS compte
+FROM personnage p
+INNER JOIN lieu l ON p.id_lieu = l.id_lieu
+WHERE l.nom_lieu <> 'Village gaulois'
+GROUP BY l.nom_lieu
+ORDER BY compte DESC
+
 -- 14. Nom des personnages qui n'ont jamais bu aucune potion.
 
 -- 15. Nom du / des personnages qui n'ont pas le droit de boire de la potion 'Magique'.
