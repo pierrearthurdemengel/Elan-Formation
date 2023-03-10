@@ -45,13 +45,13 @@ ORDER BY cout_realisation DESC
 
 -- 7. Nom des ingrédients + coût + quantité de chaque ingrédient qui composent la potion 'Santé'.
 
-SELECT nom_ingredient, SUM(i.cout_ingredient * c.qte) AS cout_realisation, c.qte
-FROM ingredient i
-INNER JOIN composer  c ON i.id_ingredient = c.id_ingredient
-GROUP BY i.id_ingredient
-ORDER BY cout_realisation
+SELECT i.nom_ingredient, c.qte, i.cout_ingredient*c.qte AS cout_realisation
+FROM potion p
+INNER JOIN composer c ON p.id_potion = c.id_potion
+INNER JOIN ingredient i ON c.id_ingredient = i.id_ingredient
+WHERE p.nom_potion = 'Santé'
+ORDER BY i.nom_ingredient;
 
--- 7 pas fini !!!
 
 -- 8. Nom du ou des personnages qui ont pris le plus de casques dans la bataille 'Bataille du village 
 -- gaulois'.
