@@ -139,7 +139,8 @@ INSERT INTO personnage (id_personnage, nom_personnage, adresse_personnage,id_lie
 VALUES ('46','Champdeblix', 'ferme Hantassion', '6', '12');
 
 -- B. Autorisez Bonemine à boire de la potion magique, elle est jalouse d'Iélosubmarine...
-
+INSERT INTO autoriser_boire (id_potion, id_personnage)
+VALUES ('1', '12')
 
 -- C. Supprimez les casques grecs qui n'ont jamais été pris lors d'une bataille.
 
