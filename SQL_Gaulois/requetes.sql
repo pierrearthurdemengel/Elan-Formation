@@ -149,10 +149,10 @@ WHERE id_type_casque = '2'
     SELECT id_casque
     FROM prendre_casque
   )
-
-
 -- D. Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate.
-
+UPDATE personnage
+SET adresse_personnage = 'Grand Camp'
+WHERE nom_personnage = 'Zérozérosix';
 
 -- E. La potion 'Soupe' ne doit plus contenir de persil.
 
