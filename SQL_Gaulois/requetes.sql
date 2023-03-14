@@ -141,6 +141,23 @@ WHERE l.nom_lieu <> 'Village gaulois'
 GROUP BY l.nom_lieu
 ORDER BY compte DESC
 
+-- ou mieux en cas d'égalitée
+
+SELECT l.nom_lieu, COUNT(*) AS compte
+FROM personnage p
+INNER JOIN lieu l ON p.id_lieu = l.id_lieu
+WHERE l.nom_lieu <> 'Village gaulois'
+GROUP BY l.nom_lieu
+	HAVING compte >= ALL
+	(
+		SELECT COUNT(*) AS compte
+FROM personnage p
+INNER JOIN lieu l ON p.id_lieu = l.id_lieu
+WHERE l.nom_lieu <> 'Village gaulois'
+GROUP BY l.nom_lieu
+
+	)
+
 -- 14. Nom des personnages qui n'ont jamais bu aucune potion.
 
 SELECT nom_personnage
