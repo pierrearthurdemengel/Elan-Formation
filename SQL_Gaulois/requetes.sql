@@ -90,11 +90,27 @@ ORDER BY b.dose_boire DESC
 
 -- 10. Nom de la bataille où le nombre de casques pris a été le plus important.
 
-SELECT nom_bataille, pc.qte
+SELECT nom_bataille, SUM(qte) AS qte_total
 FROM prendre_casque pc
-INNER JOIN bataille b ON pc.id_bataille = pc.id_bataille
-ORDER BY pc.qte DESC 
-LIMIT 50
+INNER JOIN bataille b ON pc.id_bataille = b.id_bataille
+GROUP BY pc.id_bataille, nom_bataille
+HAVING SUM(qte) = (SELECT MAX(total_casques) FROM 
+                   (SELECT SUM(qte) AS total_casques
+                    FROM prendre_casque pc
+                    GROUP BY pc.id_bataille) AS casques_par_bataille)
+
+
+
+--   SELECT nom_bataille, SUM(qte) AS qte_total
+-- FROM prendre_casque pc
+-- INNER JOIN bataille b ON pc.id_bataille = b.id_bataille
+-- 	AND qte >= ALL (
+-- 		SELECT nom_bataille
+-- 		FROM prendre_casque pc
+-- 		INNER JOIN bataille b ON pc.id_bataille = b.id_bataille
+-- 		GROUP BY nom_bataille
+-- )
+-- 	GROUP BY pc.id_bataille, nom_bataille
 
 -- 11. Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par 
 -- nombre décroissant)
