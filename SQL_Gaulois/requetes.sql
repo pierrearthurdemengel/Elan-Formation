@@ -61,12 +61,28 @@ FROM prendre_casque pc
 INNER JOIN personnage p ON pc.id_personnage = p.id_personnage
 INNER JOIN bataille b ON pc.id_bataille = b.id_bataille
 WHERE b.nom_bataille = 'Bataille du village gaulois'
-ORDER BY pc.qte
+ORDER BY pc.qte DESC 
+LIMIT 1
+
+-- Mais en mieux si égalitée
+
+SELECT nom_personnage, PC.qte
+	FROM prendre_casque PC
+	INNER JOIN bataille B ON PC.id_bataille = B.id_bataille
+	INNER JOIN personnage P ON PC.id_personnage = P.id_personnage
+	WHERE B.nom_bataille = 'Bataille du village gaulois'
+	AND PC.qte >= ALL (
+		SELECT PC.qte
+		FROM prendre_casque PC
+		INNER JOIN bataille B ON PC.id_bataille = B.id_bataille
+		INNER JOIN personnage P ON PC.id_personnage = P.id_personnage
+		WHERE B.nom_bataille = 'Bataille du village gaulois'
+	) 
 
 -- 9. Nom des personnages et leur quantité de potion bue (en les classant du plus grand buveur 
 -- au plus petit).
 
-SELECT nom_personnage, b.dose_boire
+SELECT pe.nom_personnage, b.dose_boire
 FROM boire b
 INNER JOIN personnage pe ON pe.id_personnage = b.id_personnage
 INNER JOIN potion po ON po.id_potion = b.id_potion
