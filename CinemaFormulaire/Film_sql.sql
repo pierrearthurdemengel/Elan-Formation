@@ -56,19 +56,20 @@ AND
 -- d. Nombre de films par genre (classés dans l’ordre décroissant)
 
 SELECT 
-    f.titre,          
-    f.annee,         
-    TIME_FORMAT(SEC_TO_TIME(f.duree*60), '%H:%i') as temps_format,  
-    f.synopsis,      
-    f.note5,        
-    f.lien_affiche
+    g.nom_genre,
+    COUNT(f.id_film) AS nb_films
 FROM 
     film f              
 INNER JOIN 
     appartenir a ON a.id_film = f.id_film 
 INNER JOIN 
-    genre g ON a.id_genre = g.id_genre          
-WHERE 
-	 nom_genre = 'post_apo'
+    genre g ON a.id_genre = g.id_genre 
+GROUP BY 
+    g.nom_genre
+ORDER BY 
+    nb_films DESC;
 
-     
+
+
+-- e. Nombre de films par réalisateur (classés dans l’ordre décroissant)
+
