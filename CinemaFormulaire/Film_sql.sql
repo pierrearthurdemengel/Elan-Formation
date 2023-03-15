@@ -87,4 +87,31 @@ GROUP BY
 ORDER BY
     nb_films DESC;
 
---  f. Casting d’un film en particulier (id_film) : nom, prénom des acteurs + sexe   
+--  f. Casting d’un film en particulier (id_film) : nom, prénom des acteurs + sexe 
+
+ SELECT
+    p.nom, 
+	 p.prenom,
+	 p.sexe 
+FROM
+    acteur a
+    INNER JOIN personne p ON p.id_personne = a.personne_id
+    INNER JOIN casting c ON a.id_acteur = c.acteur_id
+    INNER JOIN film f ON c.film_id = f.id_film
+WHERE f.id_film = '1'
+
+-- g. Films tournés par un acteur en particulier (id_acteur) avec leur rôle et l’année de sortie (du film le plus récent au plus ancien)
+
+SELECT
+	 f.titre,
+	 f.annee,
+	 r.nom_role
+FROM
+	 film f
+INNER JOIN casting c ON f.id_film = c.film_id
+INNER JOIN acteur a ON a.id_acteur = c.acteur_id
+INNER JOIN personne p ON p.id_personne = a.personne_id
+INNER JOIN role r ON r.id_role = c.role_id
+WHERE 
+	 a.id_acteur = '2'
+ORDER BY f.annee DESC 
