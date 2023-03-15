@@ -141,3 +141,30 @@ FROM personne p
 	INNER JOIN acteur a ON a.id_acteur = p.id_personne
 
 -- k. Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu)
+
+SELECT 
+	 p.nom, 
+	 p.prenom,
+	 DATEDIFF(CURRENT_DATE, p.date_naissance) / 365 AS age
+FROM 
+	 personne p
+INNER JOIN 
+	 acteur a ON p.id_personne = a.personne_id
+WHERE 
+	 DATEDIFF(CURRENT_DATE, p.date_naissance) >= 50*365
+
+--  k. Acteurs ayant joué dans 3 films ou plus
+
+SELECT 
+	 p.nom, 
+    p.prenom,
+    COUNT(*) AS "Nombre de film joué"
+FROM 
+	 casting c
+INNER JOIN 
+	 acteur a ON c.acteur_id = a.id_acteur
+INNER JOIN 
+	 personne p ON p.id_personne = a.personne_id
+GROUP BY
+	  a.id_acteur
+HAVING COUNT(*) >= 3;
