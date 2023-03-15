@@ -15,7 +15,7 @@ FROM
     INNER JOIN realisateur r ON f.realisateur_id = r.id_realisateur
     INNER JOIN personne p ON r.personne_id = p.id_personne
 WHERE
-    f.id_film = '1'
+    f.id_film = 1
     
     
      -- b. Liste des films dont la durée excède 2h15 classés par durée (du plus long au plus court)
@@ -37,7 +37,7 @@ INNER JOIN
 INNER JOIN 
 	 personne p ON r.personne_id = p.id_personne
 WHERE
-    f.duree > '135' 
+    f.duree > 135 
 ORDER BY 
 	 temps_format DESC 
     
@@ -58,7 +58,7 @@ FROM
     INNER JOIN realisateur r ON f.realisateur_id = r.id_realisateur
     INNER JOIN personne p ON r.personne_id = p.id_personne
 WHERE
-    r.id_realisateur = '2'
+    r.id_realisateur = 2
     
     -- d. Nombre de films par genre (classés dans l’ordre décroissant)
 SELECT
@@ -98,7 +98,7 @@ FROM
     INNER JOIN personne p ON p.id_personne = a.personne_id
     INNER JOIN casting c ON a.id_acteur = c.acteur_id
     INNER JOIN film f ON c.film_id = f.id_film
-WHERE f.id_film = '1'
+WHERE f.id_film = 1
 
 -- g. Films tournés par un acteur en particulier (id_acteur) avec leur rôle et l’année de sortie (du film le plus récent au plus ancien)
 
@@ -113,7 +113,7 @@ INNER JOIN acteur a ON a.id_acteur = c.acteur_id
 INNER JOIN personne p ON p.id_personne = a.personne_id
 INNER JOIN role r ON r.id_role = c.role_id
 WHERE 
-	 a.id_acteur = '2'
+	 a.id_acteur = 2
 ORDER BY f.annee DESC 
 
 -- h. Listes des personnes qui sont à la fois acteurs et réalisateurs
