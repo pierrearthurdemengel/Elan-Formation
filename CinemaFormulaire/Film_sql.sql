@@ -69,7 +69,7 @@ FROM
     INNER JOIN appartenir a ON a.id_film = f.id_film
     INNER JOIN genre g ON a.id_genre = g.id_genre
 GROUP BY
-    g.nom_genre
+    g.id_genre
 ORDER BY
     nb_films DESC;
 
