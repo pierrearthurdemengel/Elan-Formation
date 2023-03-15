@@ -115,3 +115,14 @@ INNER JOIN role r ON r.id_role = c.role_id
 WHERE 
 	 a.id_acteur = '2'
 ORDER BY f.annee DESC 
+
+-- h. Listes des personnes qui sont à la fois acteurs et réalisateurs
+
+SELECT 
+	 p.nom,
+	 p.prenom
+FROM 
+	 personne p
+INNER JOIN acteur a ON a.personne_id = p.id_personne
+INNER JOIN realisateur r ON r.personne_id = p.id_personne
+
