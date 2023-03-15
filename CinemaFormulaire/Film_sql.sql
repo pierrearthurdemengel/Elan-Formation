@@ -153,7 +153,7 @@ INNER JOIN
 WHERE 
 	 DATEDIFF(CURRENT_DATE, p.date_naissance) >= 50*365
 
---  k. Acteurs ayant joué dans 3 films ou plus
+--  l. Acteurs ayant joué dans 3 films ou plus
 
 SELECT 
 	 p.nom, 
