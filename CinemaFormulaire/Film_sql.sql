@@ -126,3 +126,18 @@ FROM
 INNER JOIN acteur a ON a.personne_id = p.id_personne
 INNER JOIN realisateur r ON r.personne_id = p.id_personne
 
+-- i. Liste des films qui ont moins de 5 ans (classés du plus récent au plus ancien)
+SELECT titre, annee 
+FROM film 
+WHERE annee <= 2018
+ORDER BY annee DESC;
+
+-- j. Nombre d’hommes et de femmes parmi les acteurs
+
+SELECT 
+	COUNT(CASE WHEN sexe = 'H' THEN 1 END) AS "Nombre d'hommes", 
+	COUNT(CASE WHEN sexe = 'F' THEN 1 END) AS "Nombre de femmes"
+FROM personne p
+	INNER JOIN acteur a ON a.id_acteur = p.id_personne
+
+-- k. Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu)
