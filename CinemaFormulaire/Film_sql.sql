@@ -32,10 +32,14 @@ SELECT
     p.date_naissance
 FROM
     film f
-    INNER JOIN realisateur r ON f.realisateur_id = r.id_realisateur
-    INNER JOIN personne p ON r.personne_id = p.id_personne
+INNER JOIN 
+	 realisateur r ON f.realisateur_id = r.id_realisateur
+INNER JOIN 
+	 personne p ON r.personne_id = p.id_personne
 WHERE
-    SEC_TO_TIME(f.duree * 60) > '02:15' 
+    f.duree > '135' 
+ORDER BY 
+	 temps_format DESC 
     
     -- c. Liste des films d’un réalisateur (en précisant l’année de sortie)
 SELECT
