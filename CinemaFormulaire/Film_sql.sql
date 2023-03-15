@@ -26,3 +26,28 @@ INNER JOIN
     personne p ON r.personne_id = p.id_personne          
 WHERE 
     SEC_TO_TIME(f.duree*60) > '02:15'  
+
+
+-- c. Liste des films d’un réalisateur (en précisant l’année de sortie)
+
+SELECT 
+    f.titre,          
+    f.annee,         
+    TIME_FORMAT(SEC_TO_TIME(f.duree*60), '%H:%i') as temps_format,  
+    f.synopsis,      
+    f.note5,        
+    f.lien_affiche,   
+    p.nom,             
+    p.prenom,         
+    p.sexe,            
+    p.date_naissance   
+FROM 
+    film f              
+INNER JOIN 
+    realisateur r ON f.realisateur_id = r.id_realisateur 
+INNER JOIN 
+    personne p ON r.personne_id = p.id_personne          
+WHERE 
+    p.id_personne = '2'  
+AND
+	 f.annee = '1994'
