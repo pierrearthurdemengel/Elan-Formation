@@ -58,9 +58,7 @@ FROM
     INNER JOIN realisateur r ON f.realisateur_id = r.id_realisateur
     INNER JOIN personne p ON r.personne_id = p.id_personne
 WHERE
-    p.id_personne = '2'
-    AND f.annee = '1994' 
-    
+    r.id_realisateur = '2'
     
     -- d. Nombre de films par genre (classés dans l’ordre décroissant)
 SELECT
