@@ -132,6 +132,14 @@ FROM film
 WHERE annee <= 2018
 ORDER BY annee DESC;
 
+-- ou en mieux pour ne pas actualiser tous les ans
+
+SELECT titre, annee 
+FROM film 
+WHERE YEAR(NOW()) - annee < 5
+ORDER BY annee DESC;
+
+
 -- j. Nombre d’hommes et de femmes parmi les acteurs
 
 SELECT 
